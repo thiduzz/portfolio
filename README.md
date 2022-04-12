@@ -3,6 +3,16 @@
 
 This is my personal portfolio - build with Next.js project that will be hosted in an S3 bucket and will utilize Sanity.io as a CMS.
 
+[www.thizaom.com](https://www.thizaom.com)
+
+## Features
+- Blogging
+- Add page transaction animation
+- Multi-language
+- Photographic Gallery
+- Discogs integration
+- Spotify integration
+
 ## Tech Stack
 - React
 - Next.js
