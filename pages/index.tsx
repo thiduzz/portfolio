@@ -7,6 +7,12 @@ import {FiGithub, FiLinkedin, FiRss, FiTwitter} from "react-icons/fi";
 
 
 const Home: NextPage = () => {
+
+    const githubLink = process.env.GITHUB_PROFILE_LINK ?? '#'
+    const linkedinLink = process.env.LINKEDIN_PROFILE_LINK ?? '#'
+    const twitterlink = process.env.TWITTER_PROFILE_LINK ?? '#'
+    const rssLink = process.env.RSS_LINK ?? '#'
+
     return (
         <Layout>
 
@@ -21,29 +27,29 @@ const Home: NextPage = () => {
                         <h1 className="text-5xl flex flex-row items-center">Hi, I&apos;m <div
                             className="rounded-xl mx-2 p-2 bg-gray-800 text-white">Thiago</div></h1>
                     </div>
-                    <div className="subtitle uppercase rounded-lg mx-2 mb-5 py-2 text-gray-800 flex gap-x-6 px-10">
+                    <div className="subtitle uppercase rounded-lg mx-2 mb-5 py-2 text-gray-800 flex gap-x-6 px-10 tracking-wide">
                         <span>full-stack developer</span>
                         <span>solutions engineer</span>
                         <span>blockchain enthusiast</span>
                     </div>
                     <div className="flex flex-row justify-center items-center gap-10">
-                        <Link href='/'>
-                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer">
+                        <Link href={githubLink}>
+                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiGithub className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href='/'>
-                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer">
+                        <Link href={linkedinLink}>
+                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiLinkedin className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href='/'>
-                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer">
+                        <Link href={twitterlink}>
+                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiTwitter className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href='/'>
-                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer">
+                        <Link href={rssLink}>
+                            <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiRss className="text-white text-2xl"/>
                             </div>
                         </Link>
