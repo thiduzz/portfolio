@@ -1,9 +1,9 @@
 .container {
-  @apply w-full p-0
+  @apply w-full p-0;
 }
 
 .main {
-  min-height: 100vh;
+  @apply min-h-screen;
   padding: 4rem 0;
   flex: 1;
   display: flex;
