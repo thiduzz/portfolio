@@ -33,22 +33,22 @@ const Home: NextPage = () => {
                         <span>blockchain enthusiast</span>
                     </div>
                     <div className="flex flex-row justify-center items-center gap-10">
-                        <Link href={githubLink}>
+                        <Link href={githubLink} passHref>
                             <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiGithub className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href={linkedinLink}>
+                        <Link href={linkedinLink} passHref>
                             <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiLinkedin className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href={twitterlink}>
+                        <Link href={twitterlink} passHref>
                             <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiTwitter className="text-white text-2xl"/>
                             </div>
                         </Link>
-                        <Link href={rssLink}>
+                        <Link href={rssLink} passHref>
                             <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                 <FiRss className="text-white text-2xl"/>
                             </div>

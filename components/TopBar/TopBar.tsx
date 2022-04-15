@@ -11,9 +11,9 @@ const TopBar = ({ navigation: navigationProp, menu: menuProp }: TopBarProps) => 
         navigation = navigationProp.override ? navigationProp.items : [...navigation, ...navigationProp.items]
     }
     let menu: ReactNode[] = [
-        <Link key="1" href='/'>Home</Link>,
-        <Link key="2" href='/article'>Articles</Link>,
-        <Link key="3" href='/about'>About</Link>
+        <Link key="1" href='/' passHref>Home</Link>,
+        <Link key="2" href='/articles' passHref>Articles</Link>,
+        <Link key="3" href='/about' passHref>About</Link>
     ]
     if (menuProp){
         menu = menuProp.override ? menuProp.items : [...menu, ...menuProp.items]
