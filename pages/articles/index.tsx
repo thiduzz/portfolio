@@ -48,7 +48,7 @@ const Articles: NextPage = () => {
                 <div className="flex justify-center md:justify-start w-full">
                     <h1 className="text-3xl text-left">Articles</h1>
                 </div>
-                <div className="flex flex-row flex-wrap gap-10 justify-center mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center mt-10">
                     {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
                 </div>
             </div>
