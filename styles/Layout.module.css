@@ -1,13 +1,7 @@
 .container {
-  @apply w-full p-0;
+  @apply w-full h-screen p-0  flex flex-col;
 }
 
 .main {
-  @apply min-h-screen;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @apply flex flex-col grow flex-nowrap;
 }

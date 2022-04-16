@@ -10,3 +10,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   @apply text-gray-800;
 }
+
+.page-content{
+  @apply flex flex-col items-center justify-center min-h-full flex-nowrap  container mx-auto p-16;
+}
