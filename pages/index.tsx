@@ -8,10 +8,10 @@ import {FiGithub, FiLinkedin, FiRss, FiTwitter} from "react-icons/fi";
 
 const Home: NextPage = () => {
 
-    const githubLink = process.env.GITHUB_PROFILE_LINK ?? '#'
-    const linkedinLink = process.env.LINKEDIN_PROFILE_LINK ?? '#'
-    const twitterlink = process.env.TWITTER_PROFILE_LINK ?? '#'
-    const rssLink = process.env.RSS_LINK ?? '#'
+    const githubLink = process.env.NEXT_PUBLIC_GITHUB_PROFILE_LINK ?? '#'
+    const linkedinLink = process.env.NEXT_PUBLIC_LINKEDIN_PROFILE_LINK ?? '#'
+    const twitterlink = process.env.NEXT_PUBLIC_TWITTER_PROFILE_LINK ?? '#'
+    const rssLink = process.env.NEXT_PUBLIC_RSS_LINK ?? '#'
 
     return (
         <Layout>
