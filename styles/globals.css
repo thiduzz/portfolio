@@ -12,5 +12,11 @@ body {
 }
 
 .page-content{
-  @apply flex flex-col items-center justify-center min-h-full flex-nowrap  container mx-auto p-16;
+  @apply flex flex-col items-center justify-center min-h-full flex-nowrap px-5;
+}
+
+@media screen(md) {
+  .page-content{
+    @apply container mx-auto pt-16;
+  }
 }
