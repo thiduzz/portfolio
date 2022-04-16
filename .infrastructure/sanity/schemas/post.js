@@ -4,6 +4,14 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'mainImage',
+      title: 'Header image',
+      type: 'image',
+      options: {
+        hotspot: true
+      }
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string'
@@ -18,18 +26,52 @@ export default {
       }
     },
     {
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'string',
+      options: {
+        maxLength: 100
+      }
+    },
+    {
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: {type: 'author'}
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
+      title: 'Markdown',
+      name: 'isMarkdown',
+      type: 'boolean'
+    },
+    {
+      name: 'bodyMarkdown',
+      title: 'Body(Markdown)',
+      type: "markdown",
+      hidden: ({ parent, value }) => parent?.isMarkdown == false
+    },
+    {
+      name: 'bodyRichtext',
+      title: 'Body(Richtext)',
+      type: "blockContent",
+      hidden: ({ parent, value }) => parent?.isMarkdown == true
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published at',
+      type: 'datetime',
       options: {
-        hotspot: true
+        dateFormat: 'YYYY-MM-DD',
+        timeFormat: 'HH:mm',
+        timeStep: 15,
+        calendarTodayLabel: 'Today'
       }
+    },
+    {
+      name: 'tags',
+      title: 'Tags (SEO)',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'tag'}}]
     },
     {
       name: 'categories',
@@ -37,18 +79,11 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}]
     },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime'
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent'
-    }
   ],
-
+  initialValue: {
+    is_markdown: true,
+    publishedAt: (new Date()).toISOString()
+  },
   preview: {
     select: {
       title: 'title',
