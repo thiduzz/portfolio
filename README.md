@@ -6,12 +6,12 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 [www.thizaom.com](https://www.thizaom.com)
 
 ## Features
-- Blogging
-- Add page transaction animation
-- Multi-language
-- Photographic Gallery
-- Discogs integration
-- Spotify integration
+- [ ] Blogging
+- [ ] Add Animations (page transition, menu and etc)
+- [ ] Projects Listing
+- [ ] Photographic Gallery
+- [ ] Discogs integration
+- [ ] Spotify integration
 
 ## Tech Stack
 - React
