@@ -12,7 +12,7 @@ const About: NextPage = () => {
           <meta name="description" content="A little about me..." />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="page-content">
           <h1 className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
             About me
           </h1>

@@ -43,7 +43,7 @@ const Articles: NextPage = () => {
           <meta name="description" content="Collection of articles and others" />
           <link rel="icon" href="/public/favicon.ico" />
         </Head>
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="page-content">
             {articles && articles.map((article) => (<Link key={article.id} href={`/articles/${encodeURIComponent(article.slug)}`} passHref><div>{article.title} - {article.slug}</div></Link>))}
         </div>
       </Layout>

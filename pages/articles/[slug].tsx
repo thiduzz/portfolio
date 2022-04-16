@@ -39,7 +39,7 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
                 <meta name="description" content="Collection of articles and others"/>
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
-            <div className="flex flex-col items-center justify-center h-screen">
+            <div className="page-content">
                 {id} <br/>
                 {title}
             </div>
