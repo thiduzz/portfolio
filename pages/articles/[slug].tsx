@@ -54,9 +54,7 @@ export async function getStaticPaths() {
     });
     const {data: {allPost: articles}} = result
     if (articles) {
-        console.log('indexing articles...')
         paths = articles.map((article: { slug: { current: string } }) => {
-            console.log(article.slug.current)
             return {
                 params: {slug: article.slug.current}
             }

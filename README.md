@@ -19,8 +19,7 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 - Typescript
 - Tailwindcss
 - GraphQL (Sanity.io)
-- AWS CLI
-- AWS S3
+- Vercel (Hosting)
 - AWS Route53
 - Terraform
 

@@ -11,7 +11,6 @@ const Articles: NextPage = () => {
   const [articles, setArticles] = useState<Array<IArticle>>([])
 
   const loadArticles = useCallback(async () => {
-      debugger;
       const response = await sanity.query({
           query: gql`
             query{
