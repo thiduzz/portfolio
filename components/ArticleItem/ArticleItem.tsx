@@ -11,7 +11,8 @@ const ArticleItem = ({ article }: ArticleItemProp) => {
                 <Image src="/placeholder.jpeg" className="text-center m-0 p-0 w-full  rounded-t-md h-full object-cover object-center" layout="fill"/>
             </div>
             <div className="p-5">
-                <h3 className="text-xl">{article.title}</h3>
+                <h3 className="text-xl line-clamp-3">{article.title}</h3>
+                <p className="line-clamp-2">{article.text}</p>
             </div>
         </div>
     </Link>

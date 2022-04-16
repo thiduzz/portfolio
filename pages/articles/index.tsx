@@ -26,7 +26,11 @@ const Articles: NextPage = () => {
       `,
       });
       if(response){
-          setArticles(response.data.allPost.map((item: { _id: string; title: string; slug: { current: string } })=>({id: item._id, title: item.title, slug: item.slug.current})) as Array<IArticle>)
+          setArticles(response.data.allPost.map(
+              (item: { _id: string; title: string; slug: { current: string } }) => {
+              return {id: item._id, title: item.title, slug: item.slug.current, }
+             }
+          ) as Array<IArticle>)
       }
   },[])
 
