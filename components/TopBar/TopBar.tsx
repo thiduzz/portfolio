@@ -18,16 +18,18 @@ const TopBar = ({ navigation: navigationProp, menu: menuProp }: TopBarProps) => 
     if (menuProp){
         menu = menuProp.override ? menuProp.items : [...menu, ...menuProp.items]
     }
-    return <header className='bg-transparent py-4 container mx-auto w-full'>
-        <div className='flex justify-between gap-x-2.5'>
-        <nav>
-            {navigation.map(item => item)}
-        </nav>
-        <menu>
-            <div className='flex flex-row gap-x-16'>
-                {menu?.map(item => item)}
+    return <header className='bg-white py-4 fixed w-full z-10'>
+        <div className="container mx-auto ">
+            <div className='flex justify-between gap-x-2.5'>
+                <nav>
+                    {navigation.map(item => item)}
+                </nav>
+                <menu>
+                    <div className='flex flex-row gap-x-16'>
+                        {menu?.map(item => item)}
+                    </div>
+                </menu>
             </div>
-        </menu>
         </div>
     </header>
 }
