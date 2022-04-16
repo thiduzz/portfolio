@@ -6,13 +6,13 @@ import styles from '../../styles/Layout.module.css'
 
 const Layout = ({ children, topBar, footer }: LayoutProps) => {
  
-  return (<div>
+  return (<>
       <div className={styles.container}>
         {topBar ?? <TopBar/>}
         <main  className={styles.main}>{children}</main>
         {footer ?? <Footer/>}
       </div>
-    </div>)
+    </>)
 }
 
 
