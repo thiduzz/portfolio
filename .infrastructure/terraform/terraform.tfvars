@@ -1,0 +1,5 @@
+project_name        = "portfolio"
+project_id          = "portfolio"
+environment         = "prod"
+main_domain         = "thizaom.com"
+dns_zone_id         = "Z1ED7H4H0OE2JL"
