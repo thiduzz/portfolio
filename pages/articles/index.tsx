@@ -6,6 +6,7 @@ import { gql } from "@apollo/client";
 import sanity from "../../lib/sanity";
 import {IArticle} from "../../types/article";
 import Link from "next/link";
+import ArticleItem from "../../components/ArticleItem";
 
 const Articles: NextPage = () => {
   const [articles, setArticles] = useState<Array<IArticle>>([])
@@ -37,14 +38,20 @@ const Articles: NextPage = () => {
 
   return (
       <Layout>
-
         <Head>
           <title>Thiago Mello - Articles</title>
           <meta name="description" content="Collection of articles and others" />
           <link rel="icon" href="/public/favicon.ico" />
         </Head>
         <div className="page-content">
-            {articles && articles.map((article) => (<Link key={article.id} href={`/articles/${encodeURIComponent(article.slug)}`} passHref><div>{article.title} - {article.slug}</div></Link>))}
+            <div className="my-10">
+                <div className="flex justify-center md:justify-start w-full">
+                    <h1 className="text-3xl text-left">Articles</h1>
+                </div>
+                <div className="flex flex-row flex-wrap gap-10 justify-center mt-10">
+                    {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
+                </div>
+            </div>
         </div>
       </Layout>
   )
