@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => (
   <footer className="w-full bg-gray-200 py-4 flex items-center justify-center shadow-2xl">
-    <span className="uppercase font-light text-sm">Copyright © 2021 Thiago Mello </span>
+    <span className="uppercase font-light text-sm">Copyright © 2022 Thiago Mello </span>
   </footer>
 )
 
