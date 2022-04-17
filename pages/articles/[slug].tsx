@@ -14,10 +14,11 @@ import {dayjsFormatted} from "@libs/day";
 import CategoryBadge from "@components/CategoryBadge/CategoryBadge";
 import MarkdownContent from "@components/MarkdownContent/MardownContent";
 import RichtextContent from "@components/RichtextContent/RichtextContent";
+import TagBadge from "@components/TagBadge/TagBadge";
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
-    // @ts-ignore
-    const {id, title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
+
+    const { title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
     // @ts-ignore
     const publishedDate = dayjsFormatted(publishedAt).format('LL')
     return (
@@ -53,6 +54,16 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
                             {content && !content.isMarkdown && <RichtextContent>{content.body}</RichtextContent>}
                             {content && content.isMarkdown && <MarkdownContent>{content.body}</MarkdownContent>}
                         </div>
+                        <div className="flex flex-col">
+                            {tags && tags.length > 0 &&
+                                <>
+                                    <span className="text-sm">Tags:</span>
+                                    <div className="mt-3 flex flex-row justify-center gap-3 flex-wrap">
+                                        {tags.map((tag) => (<TagBadge key={tag.slug} tag={tag}></TagBadge>))}
+                                    </div>
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,7 +88,6 @@ export async function getStaticPaths() {
 
 }
 
-// @ts-ignore
 export async function getStaticProps({params}) {
     const {slug} = params
     const result = await sanity.query({
