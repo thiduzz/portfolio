@@ -1,10 +1,24 @@
 import type {InferGetStaticPropsType} from 'next'
-import Layout from "../../components/Layout";
+import Layout from "@components/Layout";
 import Head from "next/head";
 import React from "react";
 import {gql} from "@apollo/client";
-import sanity from "../../lib/sanity";
-import {IArticle} from "../../types/article";
+import sanity from "@libs/sanity";
+import ReactMarkdown from 'react-markdown'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {githubGist} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import remarkGfm from 'remark-gfm'
+import {
+    IArticle,
+    IArticleCategory,
+    IArticleImage,
+    IArticleResponse, IArticleTag
+} from "@local-types/article";
+import {PortableText} from "@portabletext/react";
+import Image from "next/image";
+import {dayjsFormatted} from "@libs/day";
+import CategoryBadge from "@components/CategoryBadge/CategoryBadge";
+import MarkdownContent from "@components/MarkdownContent/MardownContent";
 
 const GetAllPostBySlug = gql`
     query GetAllPostSlugs {
@@ -21,27 +35,74 @@ const GetPostBySlug = gql`
       allPost(where: { slug: { current: { eq: $slug } } }) {
         _id,
         title,
-        bodyRaw,
+        excerpt,
+        mainImage{
+            asset{
+                url,
+                title,
+                description,
+                altText
+            }
+        },
+        isMarkdown,
+        bodyMarkdown,
+        bodyRichtextRaw,
         slug {
           current
-        }
+        },
+        tags {
+            title,            
+            slug {
+                current
+            }
+        },
+        categories {
+            title,
+            slug {
+                current
+            }
+        },
+        publishedAt
       }
     }
 `;
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
     // @ts-ignore
-    const {id, title} = article
+    const {id, title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
+    const imageUrl = image ? image.url : "/placeholder.jpeg"
+    // @ts-ignore
+    const publishedDate = dayjsFormatted(publishedAt).format('LL')
     return (
         <Layout>
             <Head>
                 <title>Thiago Mello - Articles</title>
-                <meta name="description" content="Collection of articles and others"/>
+                <meta name="description" content={excerpt}/>
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
-            <div className="page-content">
-                {id} <br/>
-                {title}
+            <div className="page-content justify-start">
+                <div className="container">
+                    <div className="my-10 w-full flex flex-col items-center justify-center">
+                        <div className="flex flex-col w-full h-full h-96">
+                            <div className="relative flex flex-col grow w-full h-full  shadow-2xl rounded-xl">
+                                <Image src={imageUrl} className="text-center m-0 p-0 w-full rounded-xl h-full object-cover object-center" layout="fill"/>
+                            </div>
+                        </div>
+                        <div className="flex flex-col items-center justify-center md:justify-start w-full my-10">
+                            <h1 className="text-3xl text-left mb-3">{title}</h1>
+                            <span className="text-sm">{publishedDate}</span>
+                            {categories && categories.length > 0 &&
+                                <div className="mt-3 flex flex-row justify-center gap-3 flex-wrap">
+                                    {categories.map((category) => (<CategoryBadge key={category.slug} category={category}></CategoryBadge>))}
+                                </div>
+                            }
+                        </div>
+                        <div className="flex flex-col container">
+                            {content?.isMarkdown && !content.isMarkdown && <div className="richtext-content"><PortableText value={content?.body}/></div>}
+                            {content?.isMarkdown && content.isMarkdown && <MarkdownContent>{content.body}</MarkdownContent>}
+                        </div>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
@@ -73,16 +134,38 @@ export async function getStaticProps({params}) {
     });
     const {data: {allPost: articles}} = result
     if(articles.length > 0 ){
-        return {
-            props: {
-                article: {
-                    id: articles[0]._id,
-                    title: articles[0].title,
-                    text: articles[0].bodyRaw,
-                    slug: articles[0].slug.current
-                } as IArticle
-            },
-            revalidate: 10,
+        let image: IArticleImage|null = null;
+        const article = articles[0] as IArticleResponse
+        if(article){
+            const {categories, tags } = article
+            if(article.mainImage !== null){
+                image = {
+                    url: article.mainImage.asset.url,
+                    title: article.mainImage.asset.title,
+                    description: article.mainImage.asset.description,
+                    alt: article.mainImage.asset.title,
+                }
+            }
+            console.log(article)
+            return {
+                props: {
+                    article: {
+                        id: article._id,
+                        title: article.title,
+                        excerpt: article.excerpt,
+                        slug: article.slug.current,
+                        publishedAt: article.publishedAt,
+                        content: {
+                            isMarkdown: article.isMarkdown,
+                            body: article.isMarkdown ? article.bodyMarkdown : article.bodyRichtextRaw
+                        },
+                        image,
+                        categories: categories.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleCategory }),
+                        tags: tags.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleTag })
+                    } as IArticle
+                },
+                revalidate: 10,
+            }
         }
     }
     return {props: {}, revalidate: true, notFound: true}

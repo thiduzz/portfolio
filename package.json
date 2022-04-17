@@ -12,6 +12,7 @@
     "@apollo/client": "^3.5.10",
     "@portabletext/react": "^1.0.6",
     "@tailwindcss/line-clamp": "^0.3.1",
+    "@types/react-syntax-highlighter": "^13.5.2",
     "autoprefixer": "^10.4.4",
     "dayjs": "^1.11.1",
     "graphql": "^16.3.0",
@@ -20,6 +21,9 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-icons": "^4.3.1",
+    "react-markdown": "^8.0.2",
+    "react-syntax-highlighter": "^15.5.0",
+    "remark-gfm": "^3.0.1",
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
