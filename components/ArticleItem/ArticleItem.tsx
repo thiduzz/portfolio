@@ -2,7 +2,7 @@ import React from 'react'
 import { ArticleItemProp } from './ArticleItem.types'
 import Link from "next/link";
 import Image from "next/image";
-import {dayjs} from "../../lib/day";
+import {dayjsRelative} from "@libs/day";
 
 
 
@@ -10,7 +10,7 @@ const ArticleItem = ({ article }: ArticleItemProp) => {
     const imageUrl = article.image ? article.image.url : "/placeholder.jpeg"
     const linkUrl = `/articles/${encodeURIComponent(article.slug)}`
     // @ts-ignore
-    const publishDateString = article.publishedAt ? dayjs(article.publishedAt).fromNow() : null
+    const publishDateString = article.publishedAt ? dayjsRelative(article.publishedAt).fromNow() : null
     return <div className="article-wrapper">
             <div className="flex flex-col justify-start items-end bg-white rounded-md shadow-md w-full mb-5 md:mb-0">
                 <Link href={linkUrl} passHref>
