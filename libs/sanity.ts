@@ -21,8 +21,8 @@ export const GetImageQuery = gql`
 export default client
 
 export const GetAllPostsQuery = gql`
-            query{
-                allPost(sort: [{ publishedAt: DESC } ]){
+            query ListPosts($limit: Int, $offset: Int){
+                allPost(limit: $limit, offset: $offset, sort: [{ publishedAt: DESC } ]){
                     _id,
                     title,
                     excerpt,
@@ -40,6 +40,28 @@ export const GetAllPostsQuery = gql`
                     publishedAt
                 }
             }
+`;
+
+export const GetAllPostByCategoryQuery = gql`
+    query GetAllPostByCategorySlug($id: ID, $limit: Int, $offset: Int) {
+          allPost(limit: $limit, offset: $offset, sort: [{ publishedAt: DESC } ], where: { _: { references: $id } }) {
+                    _id,
+                    title,
+                    excerpt,
+                    slug {
+                        current
+                    },
+                    mainImage{
+                        asset{
+                            url,
+                            title,
+                            description,
+                            altText
+                        }
+                    },
+                    publishedAt
+          }
+    }
 `;
 
 export const GetAllPostBySlugQuery = gql`
@@ -109,27 +131,5 @@ export const GetSpecificCategoryBySlugQuery = gql`
             title,
             description
         }
-    }
-`;
-
-export const GetAllPostByCategoryIdQuery = gql`
-    query GetAllPostByCategorySlug($id: ID) {
-          allPost(sort: [{ publishedAt: DESC } ], where: { _: { references: $id } }) {
-                    _id,
-                    title,
-                    excerpt,
-                    slug {
-                        current
-                    },
-                    mainImage{
-                        asset{
-                            url,
-                            title,
-                            description,
-                            altText
-                        }
-                    },
-                    publishedAt
-          }
     }
 `;
