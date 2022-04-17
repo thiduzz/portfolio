@@ -1,5 +1,5 @@
 import type {NextPage} from 'next'
-import Layout from "../components/Layout";
+import Layout from "@components/Layout";
 import Head from "next/head";
 import React from "react";
 import Link from "next/link";
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
                 <meta name="description" content="Thiago Mello - Homepage"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <div className="page-content">
+            <div className="page-content justify-center">
                 <div className="hero flex flex-col items-center justify-center">
                     <div className="mb-10 flex">
                         <div className="bg-gray-900 border-8 border-gray-900 rounded-full relative shadow-2xl h-48 w-48">
