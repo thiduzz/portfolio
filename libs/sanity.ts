@@ -6,7 +6,19 @@ const client = new ApolloClient({
     connectToDevTools: true
 });
 
-export default client;
+export const GetImageQuery = gql`
+    query GetImage($id: ID!) {
+      SanityImageAsset(id: $id){
+        _id,
+        title,
+        description,
+        url,
+        altText
+      }
+    }
+`;
+
+export default client
 
 export const GetAllPostsQuery = gql`
             query{
