@@ -1,20 +1,15 @@
 import type {NextPage} from 'next'
-import Layout from "../../components/Layout";
+import Layout from "@components/Layout";
 import Head from "next/head";
 import React, {useCallback, useEffect, useState} from "react";
 import {gql} from "@apollo/client";
-import sanity from "../../lib/sanity";
-import {IArticle, IArticleImage, IArticleListResponse} from "../../types/article";
-import ArticleItem from "../../components/ArticleItem";
+import sanity from "@libs/sanity";
+import {IArticle, IArticleImage, IArticleListResponse} from "@local-types/article";
+import ArticleItem from "@components/ArticleItem";
 
-const Articles: NextPage = () => {
-    const [articles, setArticles] = useState<Array<IArticle>>([])
-
-    const loadArticles = useCallback(async () => {
-        const response = await sanity.query({
-            query: gql`
+const GetAllPosts = gql`
             query{
-                allPost{
+                allPost(sort: [{ publishedAt: DESC } ]){
                     _id,
                     title,
                     excerpt,
@@ -32,7 +27,14 @@ const Articles: NextPage = () => {
                     publishedAt
                 }
             }
-      `,
+`;
+
+const Articles: NextPage = () => {
+    const [articles, setArticles] = useState<Array<IArticle>>([])
+
+    const loadArticles = useCallback(async () => {
+        const response = await sanity.query({
+            query: GetAllPosts,
         });
         if (response) {
             setArticles(response.data.allPost.map((item: IArticleListResponse) => {
@@ -69,8 +71,8 @@ const Articles: NextPage = () => {
                 <meta name="description" content="Collection of articles and others"/>
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
-            <div className="page-content">
-                <div className="my-10">
+            <div className="page-content justify-start">
+                <div className="my-10 w-full">
                     <div className="flex justify-center md:justify-start w-full">
                         <h1 className="text-3xl text-left">Articles</h1>
                     </div>
