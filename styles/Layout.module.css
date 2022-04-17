@@ -1,7 +1,7 @@
 .container {
-  @apply w-full h-screen p-0  flex flex-col;
+    @apply w-full h-screen p-0  flex flex-col;
 }
 
 .main {
-  @apply flex flex-col grow flex-nowrap;
+    @apply flex flex-col grow flex-nowrap;
 }
