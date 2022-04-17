@@ -9,33 +9,37 @@ import {
     IArticleImage,
     IArticleResponse, IArticleTag
 } from "@local-types/article";
-import {PortableText} from "@portabletext/react";
 import Image from "next/image";
 import {dayjsFormatted} from "@libs/day";
 import CategoryBadge from "@components/CategoryBadge/CategoryBadge";
 import MarkdownContent from "@components/MarkdownContent/MardownContent";
+import RichtextContent from "@components/RichtextContent/RichtextContent";
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
     // @ts-ignore
     const {id, title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
-    const imageUrl = image ? image.url : "/placeholder.jpeg"
     // @ts-ignore
     const publishedDate = dayjsFormatted(publishedAt).format('LL')
     return (
         <Layout>
             <Head>
-                <title>Thiago Mello - Articles</title>
+                <title>{title} - Thiago Mello - Article</title>
                 <meta name="description" content={excerpt}/>
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
             <div className="page-content justify-start">
                 <div className="container">
                     <div className="my-10 w-full flex flex-col items-center justify-center">
-                        <div className="flex flex-col w-full h-full h-96">
-                            <div className="relative flex flex-col grow w-full h-full  shadow-2xl rounded-xl">
-                                <Image src={imageUrl} className="text-center m-0 p-0 w-full rounded-xl h-full object-cover object-center" layout="fill"/>
+                        {image && <div className="flex flex-col w-full h-full h-96">
+                            <div className="relative flex flex-col grow w-full h-full shadow-2xl rounded-xl">
+                                <Image src={image.url}
+                                       title={image.title}
+                                       alt={image.alt}
+                                       className="text-center m-0 p-0 w-full rounded-xl h-full object-cover object-center" layout="fill"/>
                             </div>
-                        </div>
+                            {image.description && <span className="text-xs text-gray-500 text-center mt-2">{image.description}</span>}
+                        </div>}
+
                         <div className="flex flex-col items-center justify-center md:justify-start w-full my-10">
                             <h1 className="text-3xl text-left mb-3">{title}</h1>
                             <span className="text-sm">{publishedDate}</span>
@@ -46,8 +50,8 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
                             }
                         </div>
                         <div className="flex flex-col container">
-                            {content?.isMarkdown && !content.isMarkdown && <div className="richtext-content"><PortableText value={content?.body}/></div>}
-                            {content?.isMarkdown && content.isMarkdown && <MarkdownContent>{content.body}</MarkdownContent>}
+                            {content && !content.isMarkdown && <RichtextContent>{content.body}</RichtextContent>}
+                            {content && content.isMarkdown && <MarkdownContent>{content.body}</MarkdownContent>}
                         </div>
                     </div>
                 </div>
@@ -88,13 +92,12 @@ export async function getStaticProps({params}) {
             const {categories, tags } = article
             if(article.mainImage !== null){
                 image = {
-                    url: article.mainImage.asset.url,
-                    title: article.mainImage.asset.title,
-                    description: article.mainImage.asset.description,
-                    alt: article.mainImage.asset.title,
+                    url: article.mainImage.asset.url ?? "/placeholder.jpeg",
+                    title: article.mainImage.asset.title ?? `${article.title} Image Title`,
+                    description: article.mainImage.asset.description ?? `${article.title} Image`,
+                    alt: article.mainImage.asset.altText ?? `${article.title} Image Alt`,
                 }
             }
-            console.log(article)
             return {
                 props: {
                     article: {
@@ -108,8 +111,8 @@ export async function getStaticProps({params}) {
                             body: article.isMarkdown ? article.bodyMarkdown : article.bodyRichtextRaw
                         },
                         image,
-                        categories: categories.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleCategory }),
-                        tags: tags.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleTag })
+                        categories: categories ? categories.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleCategory }) : null,
+                        tags: tags ? tags.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleTag }) : null
                     } as IArticle
                 },
                 revalidate: 10,
