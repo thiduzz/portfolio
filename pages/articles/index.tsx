@@ -3,38 +3,17 @@ import Layout from "@components/Layout";
 import Head from "next/head";
 import React, {useCallback, useEffect, useState} from "react";
 import {gql} from "@apollo/client";
-import sanity from "@libs/sanity";
+import sanity, {GetAllPostsQuery} from "@libs/sanity";
 import {IArticle, IArticleImage, IArticleListResponse} from "@local-types/article";
 import ArticleItem from "@components/ArticleItem";
 
-const GetAllPosts = gql`
-            query{
-                allPost(sort: [{ publishedAt: DESC } ]){
-                    _id,
-                    title,
-                    excerpt,
-                    slug {
-                        current
-                    },
-                    mainImage{
-                        asset{
-                            url,
-                            title,
-                            description,
-                            altText
-                        }
-                    },
-                    publishedAt
-                }
-            }
-`;
 
 const Articles: NextPage = () => {
     const [articles, setArticles] = useState<Array<IArticle>>([])
 
     const loadArticles = useCallback(async () => {
         const response = await sanity.query({
-            query: GetAllPosts,
+            query: GetAllPostsQuery,
         });
         if (response) {
             setArticles(response.data.allPost.map((item: IArticleListResponse) => {

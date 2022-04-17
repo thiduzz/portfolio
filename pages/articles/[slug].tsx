@@ -2,12 +2,7 @@ import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import Head from "next/head";
 import React from "react";
-import {gql} from "@apollo/client";
-import sanity from "@libs/sanity";
-import ReactMarkdown from 'react-markdown'
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {githubGist} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import remarkGfm from 'remark-gfm'
+import sanity, {GetAllPostBySlugQuery, GetPostBySlugQuery} from "@libs/sanity";
 import {
     IArticle,
     IArticleCategory,
@@ -19,53 +14,6 @@ import Image from "next/image";
 import {dayjsFormatted} from "@libs/day";
 import CategoryBadge from "@components/CategoryBadge/CategoryBadge";
 import MarkdownContent from "@components/MarkdownContent/MardownContent";
-
-const GetAllPostBySlug = gql`
-    query GetAllPostSlugs {
-        allPost{
-            slug {
-                current
-            }
-        }
-    }
-`;
-
-const GetPostBySlug = gql`
-    query getPageBySlug($slug: String) {
-      allPost(where: { slug: { current: { eq: $slug } } }) {
-        _id,
-        title,
-        excerpt,
-        mainImage{
-            asset{
-                url,
-                title,
-                description,
-                altText
-            }
-        },
-        isMarkdown,
-        bodyMarkdown,
-        bodyRichtextRaw,
-        slug {
-          current
-        },
-        tags {
-            title,            
-            slug {
-                current
-            }
-        },
-        categories {
-            title,
-            slug {
-                current
-            }
-        },
-        publishedAt
-      }
-    }
-`;
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
     // @ts-ignore
@@ -111,7 +59,7 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
 export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string } }> = []
     const result: any = await sanity.query({
-        query: GetAllPostBySlug,
+        query: GetAllPostBySlugQuery,
     });
     const {data: {allPost: articles}} = result
     if (articles) {
@@ -129,7 +77,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
     const {slug} = params
     const result = await sanity.query({
-        query: GetPostBySlug,
+        query: GetPostBySlugQuery,
         variables: {slug}
     });
     const {data: {allPost: articles}} = result

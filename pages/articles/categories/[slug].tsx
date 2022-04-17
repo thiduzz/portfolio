@@ -2,8 +2,7 @@ import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import Head from "next/head";
 import React from "react";
-import {gql} from "@apollo/client";
-import sanity from "@libs/sanity";
+import sanity, {GetAllCategoriesQuery, GetAllPostByCategoryIdQuery, GetSpecificCategoryBySlugQuery} from "@libs/sanity";
 import {
     IArticle, IArticleCategory,
     IArticleImage,
@@ -11,50 +10,6 @@ import {
 } from "@local-types/article";
 import ArticleItem from "@components/ArticleItem";
 
-const GetAllCategories = gql`
-    query GetAllCategories {
-        allCategory{
-            _id,
-            title,
-            description,
-            slug {
-                current
-            }
-        }
-    }
-`;
-
-const GetSpecificCategoryBySlug = gql`
-    query GetSpecificCategoryBySlug($slug: String) {
-        allCategory(where: { slug: { current: { eq: $slug } } }){
-            _id,
-            title,
-            description
-        }
-    }
-`;
-
-const GetAllPostByCategorySlug = gql`
-    query GetAllPostByCategorySlug($id: ID) {
-          allPost(sort: [{ publishedAt: DESC } ], where: { _: { references: $id } }) {
-                    _id,
-                    title,
-                    excerpt,
-                    slug {
-                        current
-                    },
-                    mainImage{
-                        asset{
-                            url,
-                            title,
-                            description,
-                            altText
-                        }
-                    },
-                    publishedAt
-          }
-    }
-`;
 
 const Category = ({category, articles}: InferGetStaticPropsType<typeof getStaticProps>) => {
     const articlesCategory: Array<IArticle> = articles
@@ -83,7 +38,7 @@ const Category = ({category, articles}: InferGetStaticPropsType<typeof getStatic
 export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string, id: string, title: string, description: string } }> = []
     const result: any = await sanity.query({
-        query: GetAllCategories,
+        query: GetAllCategoriesQuery,
     });
     const {data: {allCategory: categories}} = result
     if (categories) {
@@ -102,14 +57,14 @@ export async function getStaticProps({params}) {
     const {slug} = params
 
     const resultCategory = await sanity.query({
-        query: GetSpecificCategoryBySlug,
+        query: GetSpecificCategoryBySlugQuery,
         variables: {slug}
     });
     const {data: {allCategory: categories}} = resultCategory
     if(categories && categories.length > 0){
         const category = {slug, title: categories[0].title, id: categories[0]._id, description: categories[0].description}
         const result = await sanity.query({
-            query: GetAllPostByCategorySlug,
+            query: GetAllPostByCategoryIdQuery,
             variables: {id: category.id}
         });
         const {data: {allPost: articles}} = result
