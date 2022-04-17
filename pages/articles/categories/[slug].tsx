@@ -1,19 +1,54 @@
 import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import Head from "next/head";
-import React from "react";
-import sanity, {GetAllCategoriesQuery, GetAllPostByCategoryIdQuery, GetSpecificCategoryBySlugQuery} from "@libs/sanity";
+import React, {useCallback, useState} from "react";
+import sanity, {
+    GetAllCategoriesQuery,
+    GetAllPostByCategoryQuery,
+    GetSpecificCategoryBySlugQuery
+} from "@libs/sanity";
 import {
-    IArticle, IArticleCategory,
-    IArticleImage,
-    IArticleListResponse,
+    IArticle,
+    IArticleCategory, IArticleListItemResponse, IArticleListReponse,
 } from "@local-types/article";
 import ArticleItem from "@components/ArticleItem";
+import {transformArticle} from "@libs/utils";
 
+const PAGINATION_LIMIT = 4;
 
-const Category = ({category, articles}: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const articlesCategory: Array<IArticle> = articles
-    const categoryDetail: IArticleCategory = category
+const loadCategoryPosts = async (category: IArticleCategory, offset: number): Promise<IArticleListReponse>  => {
+    const response = await sanity.query({
+        query: GetAllPostByCategoryQuery,
+        variables: {
+            id: category.id,
+            offset,
+            limit: PAGINATION_LIMIT + 1
+        }
+    });
+    let loadedArticles = [ ... (response.data.allPost ?? []) ] as Array<IArticleListItemResponse>
+    if (loadedArticles && loadedArticles.length > 0) {
+        const transformedArticles: Array<IArticle> = loadedArticles.map(transformArticle)
+        const poppedItem = transformedArticles.length > PAGINATION_LIMIT && transformedArticles.pop()
+        const hasMore = (poppedItem !== undefined && poppedItem !== false)
+        return {loadedCategory: category, loadedHasMore: hasMore, loadedArticles: transformedArticles}
+    }
+    return {loadedCategory: category, loadedHasMore: false, loadedArticles: []}
+}
+
+const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: InferGetStaticPropsType<typeof getStaticProps>) => {
+    const categoryDetail: IArticleCategory = preloadedCategory
+    const [articles, setArticles] = useState<Array<IArticle>>(preloadedArticles)
+    const [offset, setOffset] = useState<number>((preloadedArticles as Array<IArticle>).length)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [hasMore, setHasMore] = useState<boolean>(preloadedHasMore)
+    const handlePagination = useCallback(async () => {
+        setLoading(true)
+        const {loadedHasMore, loadedArticles} = await loadCategoryPosts(categoryDetail, offset)
+        setHasMore(loadedHasMore)
+        setArticles([...articles, ...loadedArticles])
+        setOffset(loadedArticles.length + offset)
+        setLoading(false)
+    },[])
     return (
         <Layout>
             <Head>
@@ -27,8 +62,10 @@ const Category = ({category, articles}: InferGetStaticPropsType<typeof getStatic
                         <h1 className="text-3xl text-left">Category: {categoryDetail.title ?? ''}</h1>
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
-                        {articlesCategory && articlesCategory.map((article: IArticle) => <ArticleItem key={article.id} article={article}/>)}
+                        {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
+                        {loading && <div>Loading...</div>}
                     </div>
+                    { hasMore && <div><button onClick={handlePagination}>Load more</button></div> }
                 </div>
             </div>
         </Layout>
@@ -49,10 +86,8 @@ export async function getStaticPaths() {
         })
     }
     return {paths, fallback: 'blocking'}
-
 }
 
-// @ts-ignore
 export async function getStaticProps({params}) {
     const {slug} = params
 
@@ -63,41 +98,8 @@ export async function getStaticProps({params}) {
     const {data: {allCategory: categories}} = resultCategory
     if(categories && categories.length > 0){
         const category = {slug, title: categories[0].title, id: categories[0]._id, description: categories[0].description}
-        const result = await sanity.query({
-            query: GetAllPostByCategoryIdQuery,
-            variables: {id: category.id}
-        });
-        const {data: {allPost: articles}} = result
-        if (articles && articles.length > 0) {
-            return {
-                props: {
-                    category,
-                    articles: articles.map((item: IArticleListResponse) => {
-                            let image: IArticleImage | null = null;
-                            if (item.mainImage !== null) {
-                                image = {
-                                    url: item.mainImage.asset.url,
-                                    title: item.mainImage.asset.title,
-                                    description: item.mainImage.asset.description,
-                                    alt: item.mainImage.asset.title,
-                                }
-                            }
-                            console.log(item.publishedAt)
-                            return {
-                                id: item._id,
-                                title: item.title,
-                                slug: item.slug.current,
-                                excerpt: item.excerpt,
-                                image,
-                                publishedAt: item.publishedAt ?? null
-                            } as IArticle
-                        }
-                    ) as Array<IArticle>
-                },
-                revalidate: 10,
-            }
-        }
-        return {props: { articles : [] as Array<IArticle>, category }, revalidate: true}
+        const {loadedHasMore, loadedArticles} = await loadCategoryPosts(category, 0)
+        return {props: { preloadedArticles : loadedArticles ? loadedArticles as Array<IArticle> : [], preloadedCategory: category, preloadedHasMore: loadedHasMore }, revalidate: true}
     }
     return {props: {}, revalidate: true, notFound: true}
 }

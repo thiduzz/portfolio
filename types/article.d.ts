@@ -1,5 +1,3 @@
-import exp from "constants";
-
 export interface IArticle {
     id: string
     title: string
@@ -37,7 +35,13 @@ export interface IArticleContent {
     body: any
 }
 
-export interface IArticleListResponse {
+export interface IArticleListReponse {
+    loadedCategory?: IArticleCategory,
+    loadedHasMore: boolean,
+    loadedArticles: Array<IArticle>
+}
+
+export interface IArticleListItemResponse {
     _id: string;
     title: string;
     excerpt: string;
