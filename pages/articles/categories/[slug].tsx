@@ -13,6 +13,7 @@ import {
 } from "@local-types/article";
 import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
+import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
 
 const PAGINATION_LIMIT = 4;
 
@@ -63,9 +64,10 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
                         {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
-                        {loading && <div>Loading...</div>}
                     </div>
-                    { hasMore && <div><button onClick={handlePagination}>Load more</button></div> }
+                    { hasMore && <div className="flex flex-row justify-center mt-10">
+                        <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
+                    </div> }
                 </div>
             </div>
         </Layout>
