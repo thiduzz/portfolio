@@ -51,7 +51,7 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
         setArticles([...articles, ...loadedArticles])
         setOffset(loadedArticles.length + offset)
         setLoading(false)
-    },[])
+    },[articles, categoryDetail, offset])
 
     // @ts-ignore
     const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined

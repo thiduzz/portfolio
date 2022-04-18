@@ -25,11 +25,11 @@ export const RichtextImage: PortableTextComponent<ImageBlock> = ({value}) => {
             setImage({title, url, description, alt: altText})
         }
         setLoading(false)
-    }, [])
+    }, [value.asset._ref])
 
     useEffect(() => {
         loadImage()
-    }, [])
+    }, [loadImage])
 
     return <>
         {loading && <div>Loading...</div>}

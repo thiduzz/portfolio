@@ -42,7 +42,7 @@ const Articles = ({preloadedArticles, preloadedHasMore}: InferGetStaticPropsType
         setArticles([...articles, ...loadedArticles])
         setOffset(loadedArticles.length + offset)
         setLoading(false)
-    },[])
+    },[articles, offset])
 
     // @ts-ignore
     const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined
