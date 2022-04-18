@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      
+            <url>
+              <loc>https://www.thizaom</loc>
+              <lastmod>2022-04-18T08:54:10.958Z</lastmod>
+              <changefreq>monthly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/about</loc>
+              <lastmod>2022-04-18T08:54:10.958Z</lastmod>
+              <changefreq>monthly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/contact</loc>
+              <lastmod>2022-04-18T08:54:10.958Z</lastmod>
+              <changefreq>monthly</changefreq>
+              <priority>1.0</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles</loc>
+              <lastmod>2022-04-18T08:54:10.958Z</lastmod>
+              <changefreq>daily</changefreq>
+              <priority>0.8</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum-2</loc>
+              <lastmod>2022-04-16T16:32:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum</loc>
+              <lastmod>2022-04-16T16:32:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum-5</loc>
+              <lastmod>2022-04-13T16:30:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum-4</loc>
+              <lastmod>2022-04-13T16:30:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum-6</loc>
+              <lastmod>2022-04-13T16:30:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/lorem-ipsum-3</loc>
+              <lastmod>2022-04-13T16:30:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/cras-tristique-semper-sodales-nulla-vitae-turpis-quis-turpis-interdum-dictum-aliquam-id</loc>
+              <lastmod>2021-04-14T09:15:00.000Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.7</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/categories/curiosity</loc>
+              <lastmod>2022-04-18T08:54:11.078Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/categories/tutorial</loc>
+              <lastmod>2022-04-18T08:54:11.078Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/categories/personal</loc>
+              <lastmod>2022-04-18T08:54:11.078Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/web3</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/kubernetes</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/javascript</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/games</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/golang</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/terraform</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/cloud</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+            <url>
+              <loc>https://www.thizaom/articles/tags/tech</loc>
+              <lastmod>2022-04-18T08:54:11.301Z</lastmod>
+              <changefreq>weekly</changefreq>
+              <priority>0.5</priority>
+            </url>
+          
+    </urlset>
+    
