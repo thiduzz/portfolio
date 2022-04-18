@@ -1,7 +1,7 @@
 import React, {ReactNode, useState} from 'react'
 import { TopBarProps } from './TopBarMenu.types'
 import Link from "next/link";
-import {FiGithub, FiLinkedin, FiMenu, FiRss, FiTwitter, FiX} from "react-icons/fi";
+import {FiGithub, FiLinkedin, FiMail, FiMenu, FiRss, FiTwitter, FiX} from "react-icons/fi";
 import {useRouter} from "next/router";
 
 
@@ -13,6 +13,7 @@ const TopBarMenu = ({  menu: menuProp }: TopBarProps) => {
     const githubLink = process.env.NEXT_PUBLIC_GITHUB_PROFILE_LINK ?? '#'
     const linkedinLink = process.env.NEXT_PUBLIC_LINKEDIN_PROFILE_LINK ?? '#'
     const twitterlink = process.env.NEXT_PUBLIC_TWITTER_PROFILE_LINK ?? '#'
+    const emailLink = process.env.NEXT_PUBLIC_EMAIL_LINK ?? '#'
     const rssLink = process.env.NEXT_PUBLIC_RSS_LINK ?? '#'
     const contacts: ReactNode[] = [
         <Link key="github" href={githubLink} passHref>
@@ -24,6 +25,9 @@ const TopBarMenu = ({  menu: menuProp }: TopBarProps) => {
         <Link key="twitter" href={twitterlink} passHref>
             <FiTwitter className="text-gray-500 cursor-pointer hover:scale-125 hover:text-green-500 duration-300"/>
         </Link>,
+        <a key="email" href={emailLink}>
+            <FiMail className="text-gray-500 cursor-pointer hover:scale-125 hover:text-green-500 duration-300"/>
+        </a>,
         <Link key="rss" href={rssLink} passHref>
             <FiRss className="text-gray-500 cursor-pointer hover:scale-125 hover:text-green-500 duration-300"/>
         </Link>

@@ -2,7 +2,7 @@ import type {NextPage} from 'next'
 import Layout from "@components/Layout";
 import React from "react";
 import Link from "next/link";
-import {FiGithub, FiLinkedin, FiRss, FiTwitter} from "react-icons/fi";
+import {FiGithub, FiLinkedin, FiMail, FiRss, FiTwitter} from "react-icons/fi";
 import Image from "next/image";
 import StandardHead from "@components/StandardHead/StandardHead";
 
@@ -12,6 +12,7 @@ const Home: NextPage = () => {
     const githubLink = process.env.NEXT_PUBLIC_GITHUB_PROFILE_LINK ?? '#'
     const linkedinLink = process.env.NEXT_PUBLIC_LINKEDIN_PROFILE_LINK ?? '#'
     const twitterlink = process.env.NEXT_PUBLIC_TWITTER_PROFILE_LINK ?? '#'
+    const emailLink = process.env.NEXT_PUBLIC_EMAIL_LINK ?? '#'
     const rssLink = process.env.NEXT_PUBLIC_RSS_LINK ?? '#'
 
     return (
@@ -48,6 +49,11 @@ const Home: NextPage = () => {
                             <Link href={twitterlink} passHref>
                                 <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                     <FiTwitter className="text-white text-2xl"/>
+                                </div>
+                            </Link>
+                            <Link href={emailLink} passHref>
+                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                    <FiMail className="text-white text-2xl"/>
                                 </div>
                             </Link>
                             <Link href={rssLink} passHref>
