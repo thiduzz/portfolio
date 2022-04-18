@@ -7,7 +7,7 @@ import {useRouter} from "next/router";
 const StandardHead = ({children, title, image, updatedAt, description}: StandardHeadProp) => {
     const router = useRouter()
     const currentUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${router.asPath}`
-    const currentImage = image ?? '/public/og-image.png'
+    const currentImage = image ?? '/og-image.png'
     return (<Head>
         <meta property="og:locale" content="en"/>
         <meta name="language" content="en"/>
@@ -19,7 +19,7 @@ const StandardHead = ({children, title, image, updatedAt, description}: Standard
         <meta property="og:article:author" content="Thiago Mello"/>
         <meta property="article:author" content="Thiago Mello"/>
         <meta name="author" content="Thiago Mello"/>
-        <link rel="icon" href="/public/favicon.ico"/>
+        <link rel="icon" href="/favicon.ico"/>
 
         <meta name="description" content={description}/>
         <title>{title}</title>
