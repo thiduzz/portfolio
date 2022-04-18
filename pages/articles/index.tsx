@@ -8,6 +8,8 @@ import {InferGetStaticPropsType} from "next";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
 import StandardHead from "@components/StandardHead/StandardHead";
 import {dayjsFormatted} from "@libs/day";
+import ArticleList from "@components/ArticleList/ArticleList";
+import ArticleHeader from "@components/ArticleHeader/ArticleHeader";
 
 const PAGINATION_LIMIT = 4;
 
@@ -52,12 +54,8 @@ const Articles = ({preloadedArticles, preloadedHasMore}: InferGetStaticPropsType
             <StandardHead title="Thiago Mello - Articles" description="Latest thoughts, discoveries on software development and other random stuff" updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
-                    <div className="flex justify-center md:justify-start w-full">
-                        <h1 className="text-3xl text-left">Articles</h1>
-                    </div>
-                    <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
-                        {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
-                    </div>
+                    <ArticleHeader title="Articles"/>
+                    <ArticleList articles={articles}/>
                     { hasMore && <div className="flex flex-row justify-center mt-10">
                         <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
                     </div> }

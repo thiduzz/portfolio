@@ -15,6 +15,8 @@ import {transformArticle} from "@libs/utils";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
 import {dayjsFormatted} from "@libs/day";
 import StandardHead from "@components/StandardHead/StandardHead";
+import ArticleList from "@components/ArticleList/ArticleList";
+import ArticleHeader from "@components/ArticleHeader/ArticleHeader";
 
 const PAGINATION_LIMIT = 4;
 
@@ -61,17 +63,8 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
             <StandardHead title={`Articles - ${categoryDetail.title} - Thiago Mello`} description={ogCategory} updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
-                    <div className="flex justify-center md:justify-start w-full flex-col">
-
-                        <div className="flex justify-center md:justify-start w-full flex-row items-center">
-                            <span className="text-xl">Category:</span>
-                            <h1 className="text-3xl text-left md:ml-5">#{categoryDetail.title ?? ''}</h1>
-                        </div>
-                        {categoryDetail.description && <h3 className="text-xl mt-4">{categoryDetail.description}</h3>}
-                    </div>
-                    <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
-                        {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
-                    </div>
+                    <ArticleHeader label="Category" title={`${categoryDetail.title ?? 'CategoryNotFound'}`} description={categoryDetail.description}/>
+                    <ArticleList articles={articles}/>
                     { hasMore && <div className="flex flex-row justify-center mt-10">
                         <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
                     </div> }

@@ -15,6 +15,8 @@ import {transformArticle} from "@libs/utils";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
 import {dayjsFormatted} from "@libs/day";
 import StandardHead from "@components/StandardHead/StandardHead";
+import ArticleList from "@components/ArticleList/ArticleList";
+import ArticleHeader from "@components/ArticleHeader/ArticleHeader";
 
 const PAGINATION_LIMIT = 4;
 
@@ -64,9 +66,8 @@ const Category = ({preloadedTag, preloadedArticles, preloadedHasMore}: InferGetS
                         <span className="text-xl">Tag:</span>
                         <h1 className="text-3xl text-left md:ml-5">#{tagDetail.title ?? ''}</h1>
                     </div>
-                    <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
-                        {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
-                    </div>
+                    <ArticleHeader label="Tag" title={`#${tagDetail.title ?? 'TagNotFound'}`}/>
+                    <ArticleList articles={articles}/>
                     { hasMore && <div className="flex flex-row justify-center mt-10">
                         <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
                     </div> }
