@@ -1,10 +1,10 @@
 import type {NextPage} from 'next'
 import Layout from "@components/Layout";
-import Head from "next/head";
 import React from "react";
 import Link from "next/link";
 import {FiGithub, FiLinkedin, FiRss, FiTwitter} from "react-icons/fi";
 import Image from "next/image";
+import StandardHead from "@components/StandardHead/StandardHead";
 
 
 const Home: NextPage = () => {
@@ -16,16 +16,12 @@ const Home: NextPage = () => {
 
     return (
         <Layout>
-            <Head>
-                <title>Thiago Mello</title>
-                <meta name="description" content="Thiago Mello - Homepage"/>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
+            <StandardHead title="Thiago Mello - Homepage" description="Thoughts, discoveries on software development and other random stuff"/>
             <div className="page-content justify-center">
                 <div className="hero flex flex-col items-center justify-center">
                     <div className="mb-10 flex">
                         <div className="bg-gray-900 border-8 border-gray-900 rounded-full relative shadow-2xl h-48 w-48">
-                            <Image src="/profile.jpg" className="rounded-full text-center m-0 p-0 w-full h-full object-cover object-center" layout="fill"/>
+                            <Image src="/images/profile.jpg" className="rounded-full text-center m-0 p-0 w-full h-full object-cover object-center" layout="fill"/>
                         </div>
                     </div>
                     <div>

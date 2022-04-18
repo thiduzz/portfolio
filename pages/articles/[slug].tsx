@@ -15,19 +15,18 @@ import CategoryBadge from "@components/CategoryBadge/CategoryBadge";
 import MarkdownContent from "@components/MarkdownContent/MardownContent";
 import RichtextContent from "@components/RichtextContent/RichtextContent";
 import TagBadge from "@components/TagBadge/TagBadge";
+import StandardHead from "@components/StandardHead/StandardHead";
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
     const { title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
     // @ts-ignore
     const publishedDate = dayjsFormatted(publishedAt).format('LL')
+    // @ts-ignore
+    const ogPublishedDate = dayjsFormatted(publishedAt).toISOString()
     return (
         <Layout>
-            <Head>
-                <title>{title} - Thiago Mello - Article</title>
-                <meta name="description" content={excerpt}/>
-                <link rel="icon" href="/public/favicon.ico"/>
-            </Head>
+            <StandardHead title={`${title} - Thiago Mello`} description={excerpt} image={image?.url} updatedAt={ogPublishedDate}/>
             <div className="page-content justify-start">
                 <div className="container">
                     <div className="my-10 w-full flex flex-col items-center justify-center">
@@ -102,7 +101,7 @@ export async function getStaticProps({params}) {
             const {categories, tags } = article
             if(article.mainImage !== null){
                 image = {
-                    url: article.mainImage.asset.url ?? "/placeholder.jpeg",
+                    url: article.mainImage.asset.url ?? "/images/placeholder.jpeg",
                     title: article.mainImage.asset.title ?? `${article.title} Image Title`,
                     description: article.mainImage.asset.description ?? `${article.title} Image`,
                     alt: article.mainImage.asset.altText ?? `${article.title} Image Alt`,

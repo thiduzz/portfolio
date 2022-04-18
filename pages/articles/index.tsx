@@ -1,5 +1,4 @@
 import Layout from "@components/Layout";
-import Head from "next/head";
 import React, {useCallback, useState} from "react";
 import sanity, {GetAllPostsQuery} from "@libs/sanity";
 import {IArticle, IArticleListItemResponse, IArticleListReponse} from "@local-types/article";
@@ -7,6 +6,8 @@ import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
 import {InferGetStaticPropsType} from "next";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
+import StandardHead from "@components/StandardHead/StandardHead";
+import {dayjsFormatted} from "@libs/day";
 
 const PAGINATION_LIMIT = 4;
 
@@ -42,13 +43,13 @@ const Articles = ({preloadedArticles, preloadedHasMore}: InferGetStaticPropsType
         setOffset(loadedArticles.length + offset)
         setLoading(false)
     },[])
+
+    // @ts-ignore
+    const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined
+    const ogImage = articles && articles[0] ? articles[0].image?.url : undefined
     return (
         <Layout>
-            <Head>
-                <title>Thiago Mello - Articles</title>
-                <meta name="description" content="Collection of articles and others"/>
-                <link rel="icon" href="/public/favicon.ico"/>
-            </Head>
+            <StandardHead title="Thiago Mello - Articles" description="Latest thoughts, discoveries on software development and other random stuff" updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
                     <div className="flex justify-center md:justify-start w-full">

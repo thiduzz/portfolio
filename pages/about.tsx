@@ -1,17 +1,12 @@
 import type { NextPage } from 'next'
 import Layout from "@components/Layout";
-import Head from "next/head";
 import React from "react";
+import StandardHead from "@components/StandardHead/StandardHead";
 
 const About: NextPage = () => {
   return (
       <Layout>
-
-        <Head>
-          <title>Thiago Mello - About</title>
-          <meta name="description" content="A little about me..." />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+        <StandardHead title="Thiago Mello - About" description="Personal things and a bit of my story so far - including career, upbringing and a bit of my personality"/>
         <div className="page-content">
             <div className="my-10 flex justify-center md:justify-start w-full">
                 <h1 className="text-3xl text-left">About me...</h1>

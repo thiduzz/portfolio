@@ -14,6 +14,8 @@ import {
 import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
+import {dayjsFormatted} from "@libs/day";
+import StandardHead from "@components/StandardHead/StandardHead";
 
 const PAGINATION_LIMIT = 4;
 
@@ -50,17 +52,19 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
         setOffset(loadedArticles.length + offset)
         setLoading(false)
     },[])
+
+    // @ts-ignore
+    const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined
+    const ogImage = articles && articles[0] ? articles[0].image?.url : undefined
+    const ogCategory = categoryDetail.description ?? `Collection of Articles related to the category ${categoryDetail.title} -  `
     return (
         <Layout>
-            <Head>
-                <title>Thiago Mello - Articles</title>
-                <meta name="description" content="Collection of articles and others"/>
-                <link rel="icon" href="/public/favicon.ico"/>
-            </Head>
+            <StandardHead title={`Articles - ${categoryDetail.title} - Thiago Mello`} description={ogCategory} updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
-                    <div className="flex justify-center md:justify-start w-full">
+                    <div className="flex justify-center md:justify-start w-full flex-col">
                         <h1 className="text-3xl text-left">Category: {categoryDetail.title ?? ''}</h1>
+                        {categoryDetail.description && <h3 className="text-xl mt-4">{categoryDetail.description}</h3>}
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
                         {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
