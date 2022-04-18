@@ -8,12 +8,14 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 ## Features
 - [X] Blogging
 - [ ] About Me Page
-- [ ] Contact Form
 - [X] Sitemap and RSS
 - [ ] Add Sitemap to Webmaster Tools and add Robots
-- [ ] Review Menu
+- [X] Review Menu
+- [ ] Test font (font-manrope)
 - [ ] Release 1.0.0
 - [ ] Header with currently deployed release
+----
+### After launch
 - [ ] Recommended Posts (within post)
 - [ ] Add Animations (page transition, menu and etc)
 - [ ] Projects Listing
