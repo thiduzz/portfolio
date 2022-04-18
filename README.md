@@ -6,7 +6,13 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 [www.thizaom.com](https://www.thizaom.com)
 
 ## Features
-- [ ] Blogging
+- [X] Blogging
+- [ ] Content
+- [ ] Contact Form
+- [ ] Sitemap
+- [ ] Review Menu
+- [ ] Release 1.0.0
+- [ ] Header with currently deployed release
 - [ ] Recommended Posts (within post)
 - [ ] Add Animations (page transition, menu and etc)
 - [ ] Projects Listing
