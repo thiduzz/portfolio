@@ -32,12 +32,13 @@ const StandardHead = ({children, title, image, updatedAt, description}: Standard
               content={description}/>
         <meta name="description"
               content={description}/>
+        <meta property="twitter:domain" content="thizaom.com"/>
         <meta name="twitter:description"
               content={description}/>
         <meta name="twitter:url" content={currentUrl} />
         <meta property="og:url" content={currentUrl} />
 
-        {image && (
+        {currentImage && (
             <>
                 <meta itemProp="image" content={currentImage}/>
                 <meta property="og:image" content={currentImage}/>
