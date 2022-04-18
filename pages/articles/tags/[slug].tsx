@@ -62,10 +62,6 @@ const Category = ({preloadedTag, preloadedArticles, preloadedHasMore}: InferGetS
             <StandardHead title={`Articles - #${tagDetail.title} - Thiago Mello`} description={`Collection of Articles related to the tag #${tagDetail.title}`} updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
-                    <div className="flex justify-center md:justify-start w-full flex-row items-center">
-                        <span className="text-xl">Tag:</span>
-                        <h1 className="text-3xl text-left md:ml-5">#{tagDetail.title ?? ''}</h1>
-                    </div>
                     <ArticleHeader label="Tag" title={`#${tagDetail.title ?? 'TagNotFound'}`}/>
                     <ArticleList articles={articles}/>
                     { hasMore && <div className="flex flex-row justify-center mt-10">
