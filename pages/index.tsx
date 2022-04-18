@@ -27,8 +27,10 @@ const Home: NextPage = () => {
                     </div>
                     <div>
                         <div className="flex flex-row justify-center mb-5 items-center">
-                            <h1 className="text-5xl flex flex-row items-center">Hi, I&apos;m <div
-                                className="rounded-xl mx-2 p-2 bg-gray-800 text-white">Thiago</div></h1>
+                            <h1 className="text-5xl flex flex-row items-center justify-center flex-wrap md:flex-nowrap">
+                                Hi, I&apos;m
+                                <div className="rounded-xl mx-2 p-2 bg-gray-800 text-white mt-2 md:mt-0">Thiago</div>
+                            </h1>
                         </div>
                         <div className="subtitle uppercase rounded-lg mx-2 mb-5 py-2 text-gray-800 flex gap-x-6 gap-y-4 md:gap-y-0 px-10 tracking-wide justify-center md:justify-between flex-wrap text-center">
                             <span>full-stack developer</span>
@@ -51,11 +53,11 @@ const Home: NextPage = () => {
                                     <FiTwitter className="text-white text-2xl"/>
                                 </div>
                             </Link>
-                            <Link href={emailLink} passHref>
+                            <a href={emailLink} >
                                 <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                     <FiMail className="text-white text-2xl"/>
                                 </div>
-                            </Link>
+                            </a>
                             <Link href={rssLink} passHref>
                                 <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                     <FiRss className="text-white text-2xl"/>
