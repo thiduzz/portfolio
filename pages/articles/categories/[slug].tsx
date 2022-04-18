@@ -2,7 +2,7 @@ import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import React, {useCallback, useState} from "react";
 import sanity, {
-    GetAllCategoriesQuery,
+    GetAllCategoriesIndexQuery,
     GetAllPostByCategoryQuery,
     GetSpecificCategoryBySlugQuery
 } from "@libs/sanity";
@@ -10,7 +10,6 @@ import {
     IArticle,
     IArticleCategory, IArticleListItemResponse, IArticleListReponse,
 } from "@local-types/article";
-import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";
 import {dayjsFormatted} from "@libs/day";
@@ -77,7 +76,7 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
 export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string } }> = []
     const result: any = await sanity.query({
-        query: GetAllCategoriesQuery,
+        query: GetAllCategoriesIndexQuery,
     });
     const {data: {allCategory: categories}} = result
     if (categories) {

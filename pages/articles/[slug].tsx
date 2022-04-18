@@ -1,8 +1,7 @@
 import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
-import Head from "next/head";
 import React from "react";
-import sanity, {GetAllPostBySlugQuery, GetPostBySlugQuery} from "@libs/sanity";
+import sanity, {GetAllPostIndexQuery, GetPostBySlugQuery} from "@libs/sanity";
 import {
     IArticle,
     IArticleCategory,
@@ -73,7 +72,7 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
 export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string } }> = []
     const result: any = await sanity.query({
-        query: GetAllPostBySlugQuery,
+        query: GetAllPostIndexQuery,
     });
     const {data: {allPost: articles}} = result
     if (articles) {

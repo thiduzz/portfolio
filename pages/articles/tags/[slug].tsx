@@ -2,9 +2,7 @@ import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import React, {useCallback, useState} from "react";
 import sanity, {
-    GetAllPostByTagQuery,
-    GetAllTagsQuery,
-    GetSpecificTagBySlugQuery
+    GetAllPostByTagQuery, GetAllTagsIndexQuery, GetSpecificTagBySlugQuery
 } from "@libs/sanity";
 import {
     IArticle,
@@ -77,7 +75,7 @@ export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string } }> = []
 
     const result: any = await sanity.query({
-        query: GetAllTagsQuery,
+        query: GetAllTagsIndexQuery,
     });
 
     const {data: {allTag: tags}} = result
