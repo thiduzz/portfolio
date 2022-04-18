@@ -7,6 +7,7 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 
 ## Features
 - [ ] Blogging
+- [ ] Recommended Posts (within post)
 - [ ] Add Animations (page transition, menu and etc)
 - [ ] Projects Listing
 - [ ] Photographic Gallery
