@@ -60,10 +60,10 @@ const TopBarMenu = ({  menu: menuProp }: TopBarProps) => {
             {isOpen && <menu className="h-screen w-screen bg-black/50 absolute inset-0 flex flex-col items-end z-20">
                 <div className="bg-white h-screen w-1/2">
                     <div className="p-5 flex flex-row items-center justify-center">
-                        <button onClick={handleClose} className="flex flex-row items-center justify-center relative"><FiX className="text-gray-900 text-4xl absolute -left-12"/>Close</button>
+                        <button onClick={handleClose} className="flex flex-row items-center justify-center relative"><FiX className="text-gray-500 text-4xl absolute -left-12"/>Close</button>
                     </div>
 
-                    <div className="flex flex-row gap-x-4 items-center justify-center text-2xl">
+                    <div className="flex flex-row gap-x-4 gap-y-4 md:gap-y-0 items-center justify-center text-2xl flex-wrap px-5 md:px-0">
                         {contacts?.map(item => item)}
                     </div>
                     <div className='flex flex-row gap-x-16 items-center justify-center mt-5'>
