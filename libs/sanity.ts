@@ -20,6 +20,42 @@ export const GetImageQuery = gql`
 
 export default client
 
+export const GetAllPostIndexQuery = gql`
+    query GetAllPosts {
+        allPost(sort: [{ publishedAt: DESC } ]){
+            title,
+            slug {
+                current
+            },
+            excerpt,
+            publishedAt,
+            _updatedAt
+        }
+    }
+`;
+
+export const GetAllCategoriesIndexQuery = gql`
+    query GetAllCategories {
+        allCategory{
+            _id,
+            slug {
+                current
+            }
+        }
+    }
+`;
+
+export const GetAllTagsIndexQuery = gql`
+    query GetAllTags {
+        allTag{
+            _id,
+            slug {
+                current
+            }
+        }
+    }
+`;
+
 export const GetAllPostsQuery = gql`
             query ListPosts($limit: Int, $offset: Int){
                 allPost(limit: $limit, offset: $offset, sort: [{ publishedAt: DESC } ]){
@@ -64,7 +100,6 @@ export const GetAllPostByCategoryQuery = gql`
     }
 `;
 
-
 export const GetAllPostByTagQuery = gql`
     query GetAllPostByTagSlug($id: ID, $limit: Int, $offset: Int) {
           allPost(limit: $limit, offset: $offset, sort: [{ publishedAt: DESC } ], where: { _: { references: $id } }) {
@@ -84,16 +119,6 @@ export const GetAllPostByTagQuery = gql`
                     },
                     publishedAt
           }
-    }
-`;
-
-export const GetAllPostBySlugQuery = gql`
-    query GetAllPostSlugs {
-        allPost{
-            slug {
-                current
-            }
-        }
     }
 `;
 
@@ -131,28 +156,6 @@ export const GetPostBySlugQuery = gql`
         },
         publishedAt
       }
-    }
-`;
-
-export const GetAllCategoriesQuery = gql`
-    query GetAllCategories {
-        allCategory{
-            _id,
-            slug {
-                current
-            }
-        }
-    }
-`;
-
-export const GetAllTagsQuery = gql`
-    query GetAllTags {
-        allTag{
-            _id,
-            slug {
-                current
-            }
-        }
     }
 `;
 
