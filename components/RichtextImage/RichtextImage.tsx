@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {PortableTextComponent} from "@portabletext/react";
-import Image from "next/image";
 import sanity, {GetImageQuery} from "@libs/sanity";
 import {IArticleImage} from "@local-types/article";
 
