@@ -22,6 +22,7 @@ const StandardHead = ({children, title, image, updatedAt, description}: Standard
         <link rel="icon" href="/public/favicon.ico"/>
 
         <meta name="description" content={description}/>
+        <title>{title}</title>
         <meta property="og:title" content={title}/>
         <meta name="twitter:title" content={title}/>
         <meta itemProp="name" content={title}/>
