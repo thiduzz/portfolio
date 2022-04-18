@@ -7,7 +7,7 @@ import {useRouter} from "next/router";
 const StandardHead = ({children, title, image, updatedAt, description}: StandardHeadProp) => {
     const router = useRouter()
     const currentUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${router.asPath}`
-    const currentImage = image ?? '/og-image.png'
+    const currentImage = image ?? '/images/og-image.png'
     return (<Head>
         <meta property="og:locale" content="en"/>
         <meta name="language" content="en"/>
