@@ -35,3 +35,11 @@ body {
     transform: rotate(359deg);
   }
 }
+
+.dots{
+  @apply absolute h-20 w-32 opacity-30 -z-10;
+  background-color: #0000;
+  background-image: radial-gradient(#2C5282 1px,#0000 1px);
+  background-size: 20px 20px;
+  transform: translate(-70px,-25%);
+}
