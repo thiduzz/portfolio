@@ -37,6 +37,7 @@ export interface IArticleContent {
 
 export interface IArticleListReponse {
     loadedCategory?: IArticleCategory,
+    loadedTag?: IArticleTag,
     loadedHasMore: boolean,
     loadedArticles: Array<IArticle>
 }

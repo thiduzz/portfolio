@@ -64,6 +64,29 @@ export const GetAllPostByCategoryQuery = gql`
     }
 `;
 
+
+export const GetAllPostByTagQuery = gql`
+    query GetAllPostByTagSlug($id: ID, $limit: Int, $offset: Int) {
+          allPost(limit: $limit, offset: $offset, sort: [{ publishedAt: DESC } ], where: { _: { references: $id } }) {
+                    _id,
+                    title,
+                    excerpt,
+                    slug {
+                        current
+                    },
+                    mainImage{
+                        asset{
+                            url,
+                            title,
+                            description,
+                            altText
+                        }
+                    },
+                    publishedAt
+          }
+    }
+`;
+
 export const GetAllPostBySlugQuery = gql`
     query GetAllPostSlugs {
         allPost{
@@ -115,8 +138,17 @@ export const GetAllCategoriesQuery = gql`
     query GetAllCategories {
         allCategory{
             _id,
-            title,
-            description,
+            slug {
+                current
+            }
+        }
+    }
+`;
+
+export const GetAllTagsQuery = gql`
+    query GetAllTags {
+        allTag{
+            _id,
             slug {
                 current
             }
@@ -130,6 +162,15 @@ export const GetSpecificCategoryBySlugQuery = gql`
             _id,
             title,
             description
+        }
+    }
+`;
+
+export const GetSpecificTagBySlugQuery = gql`
+    query GetSpecificTagBySlug($slug: String) {
+        allTag(where: { slug: { current: { eq: $slug } } }){
+            _id,
+            title
         }
     }
 `;

@@ -2,13 +2,13 @@ import type {InferGetStaticPropsType} from 'next'
 import Layout from "@components/Layout";
 import React, {useCallback, useState} from "react";
 import sanity, {
-    GetAllCategoriesQuery,
-    GetAllPostByCategoryQuery,
-    GetSpecificCategoryBySlugQuery
+    GetAllPostByTagQuery,
+    GetAllTagsQuery,
+    GetSpecificTagBySlugQuery
 } from "@libs/sanity";
 import {
     IArticle,
-    IArticleCategory, IArticleListItemResponse, IArticleListReponse,
+    IArticleListItemResponse, IArticleListReponse, IArticleTag,
 } from "@local-types/article";
 import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
@@ -18,11 +18,11 @@ import StandardHead from "@components/StandardHead/StandardHead";
 
 const PAGINATION_LIMIT = 4;
 
-const loadCategoryPosts = async (category: IArticleCategory, offset: number): Promise<IArticleListReponse>  => {
+const loadTagPosts = async (tag: IArticleTag, offset: number): Promise<IArticleListReponse>  => {
     const response = await sanity.query({
-        query: GetAllPostByCategoryQuery,
+        query: GetAllPostByTagQuery,
         variables: {
-            id: category.id,
+            id: tag.id,
             offset,
             limit: PAGINATION_LIMIT + 1
         }
@@ -32,42 +32,37 @@ const loadCategoryPosts = async (category: IArticleCategory, offset: number): Pr
         const transformedArticles: Array<IArticle> = loadedArticles.map(transformArticle)
         const poppedItem = transformedArticles.length > PAGINATION_LIMIT && transformedArticles.pop()
         const hasMore = (poppedItem !== undefined && poppedItem !== false)
-        return {loadedCategory: category, loadedHasMore: hasMore, loadedArticles: transformedArticles}
+        return {loadedTag: tag, loadedHasMore: hasMore, loadedArticles: transformedArticles}
     }
-    return {loadedCategory: category, loadedHasMore: false, loadedArticles: []}
+    return {loadedTag: tag, loadedHasMore: false, loadedArticles: []}
 }
 
-const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: InferGetStaticPropsType<typeof getStaticProps>) => {
-    const categoryDetail: IArticleCategory = preloadedCategory
+const Category = ({preloadedTag, preloadedArticles, preloadedHasMore}: InferGetStaticPropsType<typeof getStaticProps>) => {
+    const tagDetail: IArticleTag = preloadedTag
     const [articles, setArticles] = useState<Array<IArticle>>(preloadedArticles)
     const [offset, setOffset] = useState<number>((preloadedArticles as Array<IArticle>).length)
     const [loading, setLoading] = useState<boolean>(false)
     const [hasMore, setHasMore] = useState<boolean>(preloadedHasMore)
     const handlePagination = useCallback(async () => {
         setLoading(true)
-        const {loadedHasMore, loadedArticles} = await loadCategoryPosts(categoryDetail, offset)
+        const {loadedHasMore, loadedArticles} = await loadTagPosts(tagDetail, offset)
         setHasMore(loadedHasMore)
         setArticles([...articles, ...loadedArticles])
         setOffset(loadedArticles.length + offset)
         setLoading(false)
-    },[articles, categoryDetail, offset])
+    },[articles, tagDetail, offset])
 
     // @ts-ignore
     const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined
     const ogImage = articles && articles[0] ? articles[0].image?.url : undefined
-    const ogCategory = categoryDetail.description ?? `Collection of Articles related to the category ${categoryDetail.title} -  `
     return (
         <Layout>
-            <StandardHead title={`Articles - ${categoryDetail.title} - Thiago Mello`} description={ogCategory} updatedAt={ogPublishedDate} image={ogImage}/>
+            <StandardHead title={`Articles - #${tagDetail.title} - Thiago Mello`} description={`Collection of Articles related to the tag #${tagDetail.title}`} updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
                 <div className="my-10 w-full">
-                    <div className="flex justify-center md:justify-start w-full flex-col">
-
-                        <div className="flex justify-center md:justify-start w-full flex-row items-center">
-                            <span className="text-xl">Category:</span>
-                            <h1 className="text-3xl text-left md:ml-5">#{categoryDetail.title ?? ''}</h1>
-                        </div>
-                        {categoryDetail.description && <h3 className="text-xl mt-4">{categoryDetail.description}</h3>}
+                    <div className="flex justify-center md:justify-start w-full flex-row items-center">
+                        <span className="text-xl">Tag:</span>
+                        <h1 className="text-3xl text-left md:ml-5">#{tagDetail.title ?? ''}</h1>
                     </div>
                     <div className="md:grid md:grid-cols-2 md:gap-4 justify-center mt-10">
                         {articles && articles.map((article) => <ArticleItem key={article.id} article={article}/>)}
@@ -83,12 +78,15 @@ const Category = ({preloadedCategory, preloadedArticles, preloadedHasMore}: Infe
 
 export async function getStaticPaths() {
     let paths: Array<{ params: { slug: string } }> = []
+
     const result: any = await sanity.query({
-        query: GetAllCategoriesQuery,
+        query: GetAllTagsQuery,
     });
-    const {data: {allCategory: categories}} = result
-    if (categories) {
-        paths = categories.map((category: { slug: { current: string }}) => {
+
+    const {data: {allTag: tags}} = result
+
+    if (tags) {
+        paths = tags.map((category: { slug: { current: string }}) => {
             return {
                 params: {slug: category.slug.current}
             }
@@ -100,15 +98,17 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
     const {slug} = params
 
-    const resultCategory = await sanity.query({
-        query: GetSpecificCategoryBySlugQuery,
+    const resultTag = await sanity.query({
+        query: GetSpecificTagBySlugQuery,
         variables: {slug}
     });
-    const {data: {allCategory: categories}} = resultCategory
-    if(categories && categories.length > 0){
-        const category = {slug, title: categories[0].title, id: categories[0]._id, description: categories[0].description}
-        const {loadedHasMore, loadedArticles} = await loadCategoryPosts(category, 0)
-        return {props: { preloadedArticles : loadedArticles ? loadedArticles as Array<IArticle> : [], preloadedCategory: category, preloadedHasMore: loadedHasMore }, revalidate: true}
+
+    const {data: {allTag: tags}} = resultTag
+
+    if(tags && tags.length > 0){
+        const tag = {slug, title: tags[0].title, id: tags[0]._id}
+        const {loadedHasMore, loadedArticles} = await loadTagPosts(tag, 0)
+        return {props: { preloadedArticles : loadedArticles ? loadedArticles as Array<IArticle> : [], preloadedTag: tag, preloadedHasMore: loadedHasMore }, revalidate: true}
     }
     return {props: {}, revalidate: true, notFound: true}
 }
