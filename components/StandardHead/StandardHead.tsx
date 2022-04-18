@@ -1,10 +1,12 @@
 import React from "react";
 import {StandardHeadProp} from "@components/StandardHead/StandardHead.types";
 import Head from "next/head";
+import {useRouter} from "next/router";
 
 
 const StandardHead = ({children, title, image, updatedAt, description}: StandardHeadProp) => {
-    const currentUrl = window.location.href
+    const router = useRouter()
+    const currentUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${router.asPath}`
     const currentImage = image ?? '/public/og-image.png'
     return (<Head>
         <meta property="og:locale" content="en"/>
