@@ -74,7 +74,7 @@ const TopBarMenu = ({menu: menuProp}: TopBarProps) => {
                 {!isOpen && <button onClick={handleOpen}><FiMenu className="text-gray-900 text-2xl"/></button>}
             </div>
             {isOpen && <menu className="h-screen w-screen bg-black/50 absolute inset-0 flex flex-col items-end z-20">
-                <div className="bg-white h-screen w-1/2">
+                <div className="bg-white h-screen w-2/3">
                     <div className="p-5 flex flex-row items-center justify-center border-gray-200 border-b-2">
                         <button onClick={handleClose} className="flex flex-row items-center justify-center relative">
                             <FiX className="text-gray-500 text-4xl absolute -left-12"/>Close
