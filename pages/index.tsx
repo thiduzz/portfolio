@@ -39,29 +39,29 @@ const Home: NextPage = () => {
                         </div>
                         <div className="flex flex-row justify-center items-center gap-10 flex-wrap mb-10 md:mb-0">
                             <Link href={githubLink} passHref>
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">
                                     <FiGithub className="text-white text-2xl"/>
-                                </div>
+                                </a>
                             </Link>
                             <Link href={linkedinLink} passHref>
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">
                                     <FiLinkedin className="text-white text-2xl"/>
-                                </div>
+                                </a>
                             </Link>
                             <Link href={twitterlink} passHref>
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">
                                     <FiTwitter className="text-white text-2xl"/>
-                                </div>
+                                </a>
                             </Link>
                             <a href={emailLink} >
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">
                                     <FiMail className="text-white text-2xl"/>
-                                </div>
+                                </a>
                             </a>
                             <Link href={rssLink} passHref>
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                                <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">
                                     <FiRss className="text-white text-2xl"/>
-                                </div>
+                                </a>
                             </Link>
                         </div>
                     </div>
