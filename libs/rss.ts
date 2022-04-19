@@ -25,7 +25,7 @@ export default (paths: Array<IndexNode>): void => {
       <link>${process.env.NEXT_PUBLIC_DOMAIN}</link>
       <description>${title}</description>
       <language>en</language>
-      <lastBuildDate>${paths[0].lastUpdatedUTC}</lastBuildDate>
+      <lastBuildDate>${paths[0].lastUpdatedUTC ?? ''}</lastBuildDate>
       <atom:link href="${process.env.NEXT_PUBLIC_DOMAIN}/rss.xml" rel="self" type="application/rss+xml"/>
       ${paths.map(generateRssItem).join('')}
     </channel>
