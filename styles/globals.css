@@ -1,50 +1,9 @@
-@import "MarkdownContent.pcss";
-@import "RichtextContent.pcss";
+@import "tailwindcss/base";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "base.css";
+@import "content.css";
+@import "animations.css";
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply text-gray-800;
-}
+@import "tailwindcss/components";
 
-.page-content{
-  @apply flex flex-col items-center min-h-full flex-nowrap px-5 pt-16;
-}
-
-@media screen(md) {
-  .page-content{
-    @apply container mx-auto;
-  }
-}
-
-
-a {
-  @apply text-green-500 hover:underline hover:opacity-70 cursor-pointer;
-}
-
-.fa-spin {
-  animation: fa-spin 2s infinite linear;
-}
-@keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
-}
-
-.dots{
-  @apply absolute h-20 w-32 opacity-30 -z-10;
-  background-color: #0000;
-  background-image: radial-gradient(#2C5282 1px,#0000 1px);
-  background-size: 20px 20px;
-  transform: translate(-70px,-25%);
-}
+@import "tailwindcss/utilities";

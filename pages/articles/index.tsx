@@ -2,7 +2,6 @@ import Layout from "@components/Layout";
 import React, {useCallback, useState} from "react";
 import sanity, {GetAllPostsQuery} from "@libs/sanity";
 import {IArticle, IArticleListItemResponse, IArticleListReponse} from "@local-types/article";
-import ArticleItem from "@components/ArticleItem";
 import {transformArticle} from "@libs/utils";
 import {InferGetStaticPropsType} from "next";
 import LoadMoreButton from "@components/LoadMoreButton/LoadMoreButton";

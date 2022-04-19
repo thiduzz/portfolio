@@ -53,10 +53,10 @@ const Home: NextPage = () => {
                                     <FiTwitter className="text-white text-2xl"/>
                                 </a>
                             </Link>
-                            <a href={emailLink}  target="_blank">
-                                <div className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
+                            <a href={emailLink} target="_blank" rel="noreferrer">
+                                <span className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300">
                                     <FiMail className="text-white text-2xl"/>
-                                </div>
+                                </span>
                             </a>
                             <Link href={rssLink} passHref>
                                 <a className="bg-gray-800 rounded-full p-6 flex flex-wrap cursor-pointer hover:scale-125 duration-300" target="_blank">

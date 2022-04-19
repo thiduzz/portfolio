@@ -1,5 +1,19 @@
 
-.markdown-content {
+.page-content{
+    @apply flex flex-col items-center min-h-full flex-nowrap px-5 pt-16;
+}
+
+a{
+    @apply text-green-500 hover:underline hover:opacity-70 cursor-pointer;
+}
+
+@media screen(md) {
+.page-content{
+    @apply container mx-auto;
+}
+}
+
+.richtext-content, .markdown-content, .general-content {
 
     p {
         @apply my-3
@@ -58,7 +72,7 @@
     }
 
     img {
-        @apply rounded-2xl mx-auto my-5;
+        @apply rounded-2xl mx-auto my-5 shadow-2xl;
     }
 
     .contains-task-list {

@@ -31,10 +31,10 @@ const TopBarMenu = ({menu: menuProp}: TopBarProps) => {
                 <FiTwitter className="text-gray-500 cursor-pointer hover:scale-125 hover:text-green-500 duration-300"/>
             </a>
         </Link>,
-        <a key="email" href={emailLink}>
-            <a target="_blank">
+        <a key="email" href={emailLink} target="_blank" rel="noreferrer">
+            <span>
                 <FiMail className="text-gray-500 cursor-pointer hover:scale-125 hover:text-green-500 duration-300"/>
-            </a>
+            </span>
         </a>,
         <Link key="rss" href={rssLink} passHref>
             <a target="_blank">
