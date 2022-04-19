@@ -1,5 +1,6 @@
 @import "tailwindcss/base";
 
+@import "font.css";
 @import "base.css";
 @import "content.css";
 @import "animations.css";

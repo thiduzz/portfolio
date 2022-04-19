@@ -29,7 +29,7 @@ const Home: NextPage = () => {
                         <div className="flex flex-row justify-center mb-5 items-center">
                             <h1 className="text-5xl flex flex-row items-center justify-center flex-wrap md:flex-nowrap">
                                 Hi, I&apos;m
-                                <div className="rounded-xl mx-2 p-2 bg-gray-800 text-white mt-2 md:mt-0">Thiago</div>
+                                <div className="rounded-xl mx-2 px-2 bg-gray-800 text-white mt-2 md:mt-0 leading-relaxed">Thiago</div>
                             </h1>
                         </div>
                         <div className="subtitle uppercase rounded-lg mx-2 mb-5 py-2 text-gray-800 flex gap-x-6 gap-y-4 md:gap-y-0 px-10 tracking-wide justify-center md:justify-between flex-wrap text-center">
