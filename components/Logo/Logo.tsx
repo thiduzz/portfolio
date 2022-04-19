@@ -3,11 +3,23 @@ import React from 'react'
 import {FiChevronRight, FiAtSign} from 'react-icons/fi'
 
 const Logo = () => {
-  return <Link href="/" passHref>
-    <div className='text-lg cursor-pointer text-bold flex items-center'>
-      <span className='animate-blink text-green-500 flex flex-row items-center'><FiChevronRight></FiChevronRight>_</span>thiago-mello <span className='text-green-500'><FiAtSign/></span><Link href="https://github.com/thiduzz/portfolio/releases"><span className='text-green-500'>1.0.0</span></Link>
+  return <div className="text-lg cursor-pointer text-bold flex items-center">
+        <Link href="/" passHref>
+          <>
+            <span className="animate-blink text-green-500 flex flex-row items-center">
+            <FiChevronRight/>_
+            </span>
+              thiago-mello
+          </>
+        </Link>
+        <span className='text-green-500'><FiAtSign className="text-green-500"/></span>
+
+        <Link href="https://github.com/thiduzz/portfolio/releases" passHref>
+          <a target="_blank">
+            <span className='text-green-500'>1.0.0</span>
+          </a>
+        </Link>
     </div>
-  </Link>
 }
 
 export default Logo
