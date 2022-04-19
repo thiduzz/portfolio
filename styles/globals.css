@@ -24,6 +24,11 @@ body {
   }
 }
 
+
+a {
+  @apply text-green-500 hover:underline hover:opacity-70 cursor-pointer;
+}
+
 .fa-spin {
   animation: fa-spin 2s infinite linear;
 }
