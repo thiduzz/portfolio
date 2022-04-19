@@ -7,7 +7,7 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 
 ## Features
 - [X] Blogging
-- [ ] About Me Page
+- [X] About Me Page
 - [X] Sitemap and RSS
 - [ ] Add Sitemap to Webmaster Tools and add Robots
 - [X] Review Menu
