@@ -42,7 +42,7 @@ const About: NextPage = () => {
                         </p>
                         <p className="pt-5">
                             When I am not coding or studying a technology/programming language - you will find me
-                            scavenging for Vinyls in Berlin's used Records stores, having an amazing third-wave coffee
+                            scavenging for Vinyls in Berlin&apos;s used Records stores, having an amazing third-wave coffee
                             in a place such as <Link href="https://bonanzacoffee.de/" passHref><a target="_blank">Bonanza Roastery</a></Link> or running
                             around with one of my cameras and taking photos of landscapes/abandoned places.
                         </p>
@@ -54,8 +54,8 @@ const About: NextPage = () => {
                             countries!
                         </p>
                         <p className="pt-5">
-                            My family is my strength and motivation - I couldn't be half of the man I am today and have
-                            reached what I reached in my career and life if it wasn't for my amazing parents,
+                            My family is my strength and motivation - I couldn&apos;t be half of the man I am today and have
+                            reached what I reached in my career and life if it wasn&apos;t for my amazing parents,
                             grand-parents and my sisters. I dearly miss them (in portuguese - saudades) and constantly
                             look forward to see them - which I am lucky to be able to do at least twice a year :)
                         </p>
@@ -71,21 +71,21 @@ const About: NextPage = () => {
                             I consider Golang and Javascript (ReactJS/Vue.js) as my main programming languages — I love
                             it! Prior to that I worked with PHP (Laravel), NodeJS and some other corporate languages
                             (SAS Base, ACL...). I also really enjoy doing DevOps, Cloud Engineering with Terraform, AWS
-                            and Kubernetes. I see myself as a Solutions Engineer (<i>"give me a problem and I will find
-                            a good solution"</i>) and trail my career as a Full-stack developer - a position which
+                            and Kubernetes. I see myself as a Solutions Engineer (<i>&quot;give me a problem and I will find
+                            a good solution&quot;</i>) and trail my career as a Full-stack developer - a position which
                             enables me to traverse and learn the entire stack and have a full understanding of the
                             solution with a greater impact.
                         </p>
                         <p className="pt-5">
-                            For the past months I've taken a really big interest in Blockchain, Decentralized networks
+                            For the past months I&apos;ve taken a really big interest in Blockchain, Decentralized networks
                             and dApps development, studying Rust and Solidity - the programming languages that power the
                             main blockchains - I am fascinated with the possibilities of Blockchain and I believe that
-                            underneath the "noise" of cryptocurrencies it lies a technology that can definitely disrupt
-                            society in the same level the Internet did in the 90's/2000's.
+                            underneath the &quot;noise&quot; of cryptocurrencies it lies a technology that can definitely disrupt
+                            society in the same level the Internet did in the 90&apos;s/2000&apos;s.
                         </p>
                         <p className="pt-5">
-                            I tend to see and approach programming languages/technology as a means to an end — don't get
-                            me wrong, they are really important and need to be taken seriously — but let's not confuse
+                            I tend to see and approach programming languages/technology as a means to an end — don&apos;t get
+                            me wrong, they are really important and need to be taken seriously — but let&apos;s not confuse
                             the real purpose of it, which in my case, I believe it is to help, enable and unite people.
                         </p>
                         <p className="py-5">
