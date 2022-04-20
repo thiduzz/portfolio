@@ -9,11 +9,14 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 - [X] Blogging
 - [X] About Me Page
 - [X] Sitemap and RSS
-- [ ] Add Sitemap to Webmaster Tools and add Robots
 - [X] Review Menu
-- [ ] Test font (font-manrope)
+- [X] Test font (font-manrope)
 - [ ] Release 1.0.0
 - [ ] Header with currently deployed release
+- [ ] Create Post [Golang Microservice from Scratch]
+- [ ] Create Post [API Gateways]
+- [ ] Add Sitemap to Webmaster Tools and add Robots
+- [ ] Fix any bugs that might pop-up (and maybe tag for 1.0.1)
 ----
 ### After launch
 - [ ] Recommended Posts (within post)
