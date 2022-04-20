@@ -3,6 +3,7 @@ import React from 'react'
 import {FiChevronRight, FiAtSign} from 'react-icons/fi'
 
 const Logo = () => {
+  const latestVersion = process.env.NEXT_PUBLIC_RELEASE_TAG ?? 'v1.0.0'
   return <div className="text-lg cursor-pointer text-bold flex items-center">
         <Link href="/" passHref>
           <>
@@ -16,7 +17,7 @@ const Logo = () => {
 
         <Link href="https://github.com/thiduzz/portfolio/releases" passHref>
           <a target="_blank">
-            <span className='text-green-500'>1.0.0</span>
+            <span className='text-green-500'>{latestVersion}</span>
           </a>
         </Link>
     </div>
