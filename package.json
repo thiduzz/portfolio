@@ -1,10 +1,11 @@
 {
   "name": "@thiduzz/portfolio",
-  "version": "0.1.0",
+  "version": "v1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "update-version": "chmod ug+x tag-gen.sh && ./tag-gen.sh",
+    "build": "yarn run update-version && next build",
     "start": "next start",
     "lint": "next lint"
   },
