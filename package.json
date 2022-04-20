@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "./tag-gen.sh && next build",
+    "update-version": "chmod ug+x tag-gen.sh && ./tag-gen.sh",
+    "build": "yarn run update-version && next build",
     "start": "next start",
     "lint": "next lint"
   },
