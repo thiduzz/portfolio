@@ -3,7 +3,7 @@ import React from 'react'
 import {FiChevronRight, FiAtSign} from 'react-icons/fi'
 
 const Logo = () => {
-  const latestVersion = process.env.NEXT_PUBLIC_RELEASE_TAG ?? 'v1.0.0'
+  const latestVersion = process.env.NEXT_PUBLIC_RELEASE_TAG ?? 'v0.0.0'
   return <div className="text-lg cursor-pointer text-bold flex items-center">
         <Link href="/" passHref>
           <>
