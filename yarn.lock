@@ -1505,6 +1505,11 @@ json5@^1.0.1:
     array-includes "^3.1.4"
     object.assign "^4.1.2"
 
+klaro@^0.7.18:
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/klaro/-/klaro-0.7.18.tgz#fef3a05fcd656451b941e11459f37d6c336e84c0"
+  integrity sha512-Q5nehkGeZuFerisW4oeeB1ax6dHDszWckR70EcxKvhFiJQ61CM0WBSo20yLbdvz8N9MFsOFu4RNCO9JsbkCxgQ==
+
 kleur@^4.0.3:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.4.tgz#8c202987d7e577766d039a8cd461934c01cda04d"
