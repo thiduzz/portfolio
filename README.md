@@ -17,7 +17,7 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 - [ ] Create Post [Part 2] NextJS + Golang Service in Kubernetes - Infrastructure
 - [ ] Recommended Posts (within a post)
 - [ ] Fix any bugs that might pop
-- [ ] Add Google Analytics and Consent Dialog
+- [X] Add Google Analytics and Consent Dialog
 - [ ] Define Monetization strategy with AdSense
 - [ ] Add Sitemap to Webmaster Tools and add Robots
 - [ ] Release 1.0.1

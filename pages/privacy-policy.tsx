@@ -3,7 +3,6 @@ import Layout from "@components/Layout";
 import React from "react";
 import StandardHead from "@components/StandardHead/StandardHead";
 import Link from "next/link";
-import Image from "next/image";
 
 const About: NextPage = () => {
     const mainImage = "https://cdn.sanity.io/images/qgimqc2y/portfolio/723359c857465c4d7548f3dc617c61ff3be341ce-4608x3456.jpg?fit=max&auto=format"
@@ -309,7 +308,7 @@ const About: NextPage = () => {
                                 In this privacy policy we want to explain why this website use Vercel, what
                                 data is stored, how long your data is stored and how you can prevent data retention.
                             </p>
-                            <p>Below you can find an excerpt of Vercel's privacy policy and what we deemed relevant - if
+                            <p>Below you can find an excerpt of Vercel&apos;s privacy policy and what we deemed relevant - if
                                 you would like to </p>
                             <h3>What is Vercel?</h3>
                             <p>
@@ -335,13 +334,13 @@ const About: NextPage = () => {
                                 this website to be maintained. This website may collect personal information from
                                 their End Users in connection with the products or services that offered to End
                                 Users. Since Vercel hosts our website and provide other analytics tools, Vercel
-                                processes End Users' information when they use this website, web applications, and APIs.
+                                processes End Users&apos; information when they use this website, web applications, and APIs.
                                 This information may also include, but is not limited to, IP addresses, system
                                 configuration
                                 information, and other information about traffic to and from this websites
-                                (collectively, the "Log Data"), as well as Location Information derived from IP
+                                (collectively, the &quot;Log Data&quot;), as well as Location Information derived from IP
                                 addresses. Vercel do not, however, collect or process End Users’ IP addresses through
-                                the use of its analytics Services. All of this information is stored on Vercel's
+                                the use of its analytics Services. All of this information is stored on Vercel&apos;s
                                 platform as part
                                 of its Services, but our website is responsible for the content transmitted across our
                                 network (e.g., images, written content, graphics, etc.), as well as any personal
@@ -384,18 +383,18 @@ const About: NextPage = () => {
                                 <ul>
                                     <li>The right to be informed: Vercel has the obligation to inform you that we
                                         process your
-                                        personal data (and that's what we're doing in this Privacy Policy);
+                                        personal data (and that&apos;s what we&apos;re doing in this Privacy Policy);
                                     </li>
                                     <li>The right of access: your right to request a copy of the personal data Vercel
                                         hold
-                                        about you (also known as a 'data subject access request');
+                                        about you (also known as a &apos;data subject access request&apos;);
                                     </li>
                                     <li>The right of rectification: your right to request that Vercel corrects personal
                                         data
                                         about you if it is incomplete or inaccurate (though we generally recommend first
                                         making any changes in your Account Settings);
                                     </li>
-                                    <li>The right to erasure (also known as the 'right to be forgotten'): under certain
+                                    <li>The right to erasure (also known as the &apos;right to be forgotten&apos;): under certain
                                         circumstances, you may ask Vercel to delete the personal data they have about
                                         you
                                         (unless it remains necessary for us to continue processing your personal data
@@ -414,7 +413,7 @@ const About: NextPage = () => {
                                         (for example, if you object to them processing your data for direct marketing);
                                         and
                                     </li>
-                                    <li>Rights in relation to automated decision-making and profiling: Vercel's
+                                    <li>Rights in relation to automated decision-making and profiling: Vercel&apos;s
                                         obligation to
                                         be transparent about any profiling we do, or any automated decision-making.
                                     </li>
@@ -424,7 +423,7 @@ const About: NextPage = () => {
                                 <h3> Customers, Site Visitors and Event Attendees in the EEA or the UK.</h3>
                                 <p> If you are located in the EEA or the UK and you are a visitor of our website, and
                                     wish to exercise any of the rights set out above, you may contact Vercel at privacy@vercel.com
-                                    using the term "DSR" as your email subject line.
+                                    using the term &quot;DSR&quot; as your email subject line.
                                 </p>
                                 <p>You will not have to pay a fee to access your personal data (or to exercise any
                                     of the other rights) unless your request is clearly unfounded, repetitive or
