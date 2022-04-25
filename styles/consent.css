@@ -129,7 +129,7 @@
                     .cm-footer-buttons{
                         @apply flex flex-row items-center justify-between w-full;
                         .cm-btn{
-                            @apply bg-gray-900 rounded-3xl shadow-2xl text-sm md:text-base text-white p-3;
+                            @apply bg-gray-800 rounded-3xl shadow-2xl text-sm md:text-base text-white p-3;
                             &.cm-btn-danger{
                                 @apply bg-gray-600
                             }
