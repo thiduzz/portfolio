@@ -13,7 +13,7 @@ import ArticleHeader from "@components/ArticleHeader/ArticleHeader";
 const PAGINATION_LIMIT = 4;
 
 
-const loadPosts = async (offset: number): Promise<IArticleListReponse>  => {
+const loadPosts = async (offset: number): Promise<IArticleListReponse> => {
     const response = await sanity.query({
         query: GetAllPostsQuery,
         variables: {
@@ -21,7 +21,7 @@ const loadPosts = async (offset: number): Promise<IArticleListReponse>  => {
             limit: PAGINATION_LIMIT + 1
         }
     });
-    let loadedArticles = [ ... (response.data.allPost ?? []) ] as Array<IArticleListItemResponse>
+    let loadedArticles = [...(response.data.allPost ?? [])] as Array<IArticleListItemResponse>
     if (loadedArticles && loadedArticles.length > 0) {
         const transformedArticles: Array<IArticle> = loadedArticles.map(transformArticle)
         const poppedItem = transformedArticles.length > PAGINATION_LIMIT && transformedArticles.pop()
@@ -43,21 +43,25 @@ const Articles = ({preloadedArticles, preloadedHasMore}: InferGetStaticPropsType
         setArticles([...articles, ...loadedArticles])
         setOffset(loadedArticles.length + offset)
         setLoading(false)
-    },[articles, offset])
+    }, [articles, offset])
 
     // @ts-ignore
     const ogPublishedDate = articles && articles[0] ? dayjsFormatted(articles[0].publishedAt).toISOString() : undefined
     const ogImage = articles && articles[0] ? articles[0].image?.url : undefined
     return (
         <Layout>
-            <StandardHead title="Thiago Mello - Articles" description="Latest thoughts, discoveries on software development and other random stuff" updatedAt={ogPublishedDate} image={ogImage}/>
+            <StandardHead title="Thiago Mello - Articles"
+                          description="Latest thoughts, discoveries on software development and other random stuff"
+                          updatedAt={ogPublishedDate} image={ogImage}/>
             <div className="page-content justify-start">
-                <div className="my-10 w-full">
-                    <ArticleHeader title="Articles"/>
-                    <ArticleList articles={articles}/>
-                    { hasMore && <div className="flex flex-row justify-center mt-10">
-                        <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
-                    </div> }
+                <div className="container max-w-4xl">
+                    <div className="my-10 w-full">
+                        <ArticleHeader title="Articles"/>
+                        <ArticleList articles={articles}/>
+                        {hasMore && <div className="flex flex-row justify-center mt-10">
+                            <LoadMoreButton onClick={handlePagination} loading={loading}>Load more</LoadMoreButton>
+                        </div>}
+                    </div>
                 </div>
             </div>
         </Layout>
@@ -68,7 +72,7 @@ export async function getStaticProps() {
     const {loadedHasMore, loadedArticles} = await loadPosts(0)
     return {
         props: {
-            preloadedArticles : loadedArticles ? loadedArticles as Array<IArticle> : [],
+            preloadedArticles: loadedArticles ? loadedArticles as Array<IArticle> : [],
             preloadedHasMore: loadedHasMore
         },
         revalidate: true
