@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                 <div className="hero flex flex-col items-center justify-center">
                     <div className="mb-10 flex">
                         <div className="bg-gray-900 border-8 border-gray-900 rounded-full relative shadow-2xl h-48 w-48">
-                            <Image src="/images/profile.jpg" alt="Thiago's Profile Picture" title="Profile Picture" className="rounded-full text-center m-0 p-0 w-full h-full object-cover object-center" layout="fill"/>
+                            <Image src="/images/profile.jpg" priority={true} alt="Thiago's Profile Picture" title="Profile Picture" className="rounded-full text-center m-0 p-0 w-full h-full object-cover object-center" layout="fill"/>
                         </div>
                     </div>
                     <div>

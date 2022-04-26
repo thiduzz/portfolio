@@ -10,7 +10,11 @@ const Logo = () => {
             <span className="animate-blink text-green-500 flex flex-row items-center">
             <FiChevronRight/>_
             </span>
-              thiago-mello
+              <Link href="/">
+                  <span className="text-gray-800">
+                  thiago-mello
+                  </span>
+              </Link>
           </>
         </Link>
         <span className='text-green-500'><FiAtSign className="text-green-500"/></span>
