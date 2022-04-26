@@ -153,6 +153,18 @@ export const GetPostBySlugQuery = gql`
             slug {
                 current
             }
+        },        
+        previousPost {
+          title,
+          slug{
+            current
+          },
+        },
+        nextPost {
+          title,
+          slug{
+            current
+          },
         },
         publishedAt
       }

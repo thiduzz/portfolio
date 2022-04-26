@@ -6,7 +6,7 @@ import {
     IArticle,
     IArticleCategory,
     IArticleImage,
-    IArticleResponse, IArticleTag
+    IArticleResponse, IArticleTag, ILinkedArticle
 } from "@local-types/article";
 import Image from "next/image";
 import {dayjsFormatted} from "@libs/day";
@@ -15,28 +15,42 @@ import MarkdownContent from "@components/MarkdownContent/MardownContent";
 import RichtextContent from "@components/RichtextContent/RichtextContent";
 import TagBadge from "@components/TagBadge/TagBadge";
 import StandardHead from "@components/StandardHead/StandardHead";
+import ArticleLink from "@components/ArticleLink";
 
 const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
-    const { title, excerpt, tags, image, content, publishedAt, categories  } = article as IArticle
+    const {
+        title,
+        excerpt,
+        tags,
+        image,
+        content,
+        publishedAt,
+        categories,
+        previous: previousArticle,
+        next: nextArticle
+    } = article as IArticle
     // @ts-ignore
     const publishedDate = dayjsFormatted(publishedAt).format('LL')
     // @ts-ignore
     const ogPublishedDate = dayjsFormatted(publishedAt).toISOString()
     return (
         <Layout>
-            <StandardHead title={`${title} - Thiago Mello`} description={excerpt} image={image?.url} updatedAt={ogPublishedDate}/>
+            <StandardHead title={`${title} - Thiago Mello`} description={excerpt} image={image?.url}
+                          updatedAt={ogPublishedDate}/>
             <div className="page-content justify-start">
-                <div className="container">
+                <div className="container max-w-4xl">
                     <div className="my-10 w-full flex flex-col items-center justify-center">
                         {image && <div className="flex flex-col w-full h-full h-96">
                             <div className="relative flex flex-col grow w-full h-full shadow-2xl rounded-xl">
                                 <Image src={image.url}
                                        title={image.title}
                                        alt={image.alt}
-                                       className="text-center m-0 p-0 w-full rounded-xl h-full object-cover object-center" layout="fill"/>
+                                       className="text-center m-0 p-0 w-full rounded-xl h-full object-cover object-center"
+                                       layout="fill"/>
                             </div>
-                            {image.description && <span className="text-xs text-gray-500 text-center mt-2">{image.description}</span>}
+                            {image.description &&
+                                <span className="text-xs text-gray-500 text-center mt-2">{image.description}</span>}
                         </div>}
 
                         <div className="flex flex-col items-center justify-center md:justify-start w-full my-10">
@@ -44,7 +58,8 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
                             <span className="text-sm">{publishedDate}</span>
                             {categories && categories.length > 0 &&
                                 <div className="mt-3 flex flex-row justify-center gap-3 flex-wrap">
-                                    {categories.map((category) => (<CategoryBadge key={category.slug} category={category}></CategoryBadge>))}
+                                    {categories.map((category) => (
+                                        <CategoryBadge key={category.slug} category={category}></CategoryBadge>))}
                                 </div>
                             }
                         </div>
@@ -62,6 +77,15 @@ const Article = ({article}: InferGetStaticPropsType<typeof getStaticProps>) => {
                                 </>
                             }
                         </div>
+                        {(previousArticle || nextArticle) && <div
+                            className="flex flex-col md:flex-row flex-wrap items-center w-full justify-between mt-10">
+                            <div>
+                                {previousArticle && <ArticleLink article={previousArticle} position="left"/>}
+                            </div>
+                            <div>
+                                {nextArticle && <ArticleLink article={nextArticle} position="right"/>}
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -93,18 +117,28 @@ export async function getStaticProps({params}) {
         variables: {slug}
     });
     const {data: {allPost: articles}} = result
-    if(articles.length > 0 ){
-        let image: IArticleImage|null = null;
+    if (articles.length > 0) {
+        let image: IArticleImage | null = null;
+        let previousPost: ILinkedArticle | null = null;
+        let nextPost: ILinkedArticle | null = null;
         const article = articles[0] as IArticleResponse
-        if(article){
-            const {categories, tags } = article
-            if(article.mainImage !== null){
+        if (article) {
+            const {categories, tags} = article
+            if (article.mainImage !== null) {
                 image = {
                     url: article.mainImage.asset.url ?? "/images/placeholder.jpeg",
                     title: article.mainImage.asset.title ?? `${article.title} Image Title`,
                     description: article.mainImage.asset.description ?? `${article.title} Image`,
                     alt: article.mainImage.asset.altText ?? `${article.title} Image Alt`,
                 }
+            }
+            if (article.previousPost) {
+                const {title, slug: {current}} = article.previousPost
+                previousPost = {title, slug: current}
+            }
+            if (article.nextPost) {
+                const {title, slug: {current}} = article.nextPost
+                nextPost = {title, slug: current}
             }
             return {
                 props: {
@@ -119,8 +153,14 @@ export async function getStaticProps({params}) {
                             body: article.isMarkdown ? article.bodyMarkdown : article.bodyRichtextRaw
                         },
                         image,
-                        categories: categories ? categories.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleCategory }) : null,
-                        tags: tags ? tags.map(({title, slug: {current}}) => { return {title, slug: current} as IArticleTag }) : null
+                        categories: categories ? categories.map(({title, slug: {current}}) => {
+                            return {title, slug: current} as IArticleCategory
+                        }) : null,
+                        tags: tags ? tags.map(({title, slug: {current}}) => {
+                            return {title, slug: current} as IArticleTag
+                        }) : null,
+                        previous: previousPost,
+                        next: nextPost,
                     } as IArticle
                 },
                 revalidate: 10,

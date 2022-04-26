@@ -8,6 +8,13 @@ export interface IArticle {
     content?: IArticleContent
     tags?: Array<IArticleTag>
     categories?: Array<IArticleCategory>
+    previous?: ILinkedArticle
+    next?: ILinkedArticle
+}
+
+export interface ILinkedArticle {
+    title: string
+    slug: string
 }
 
 export interface IArticleTag {
@@ -58,6 +65,11 @@ export interface IArticleListItemResponse {
     publishedAt: Date|null;
 }
 
+export interface IArticleLinkedResponse {
+    title: string;
+    slug: { current: string };
+}
+
 export interface IArticleResponse {
     _id: string;
     title: string;
@@ -77,4 +89,6 @@ export interface IArticleResponse {
     bodyRichtextRaw: any;
     tags: Array<{ title: string; slug: { current: string }}>;
     categories: Array<{ title: string; slug: { current: string };}>;
+    previousPost: null|IArticleLinkedResponse;
+    nextPost: null|IArticleLinkedResponse;
 }

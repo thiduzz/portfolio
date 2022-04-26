@@ -79,6 +79,18 @@ export default {
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}]
     },
+    {
+      name: 'previousPost',
+      title: 'Previous Post',
+      type: 'reference',
+      to: {type: 'post'}
+    },
+    {
+      name: 'nextPost',
+      title: 'Next Post',
+      type: 'reference',
+      to: {type: 'post'}
+    },
   ],
   initialValue: {
     is_markdown: true,

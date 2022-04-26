@@ -14,9 +14,9 @@ const ArticleItem = ({ article }: ArticleItemProp) => {
     return <div className="article-wrapper">
             <div className="flex flex-col justify-start items-end bg-white rounded-md shadow-md w-full mb-5 md:mb-0">
                 <Link href={linkUrl} passHref>
-                <div className="relative shadow-2xl h-48 w-full rounded-t-md cursor-pointer">
-                    <Image src={image?.url ?? "/placeholder.jpeg"} alt={image?.alt ?? `Article Header Image`} className="text-center m-0 p-0 w-full rounded-t-md h-full object-cover object-center" layout="fill"/>
-                </div>
+                    <div className="relative shadow-2xl h-48 w-full rounded-t-md cursor-pointer">
+                        <Image src={image?.url ?? "/placeholder.jpeg"} alt={image?.alt ?? `Article Header Image`} className="text-center m-0 p-0 w-full rounded-t-md h-full object-cover object-center" layout="fill"/>
+                    </div>
                 </Link>
                 <div className="p-5 flex flex-col justify-around max-h-max">
                     <div className="grow">
