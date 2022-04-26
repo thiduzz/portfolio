@@ -15,14 +15,16 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 - [X] Header with currently deployed release
 - [X] Create Post [Part 1] NextJS + Golang Service in Kubernetes - Setup
 - [ ] Create Post [Part 2] NextJS + Golang Service in Kubernetes - Infrastructure
-- [ ] Recommended Posts (within a post)
+- [X] Recommended Posts (within a post)
 - [ ] Fix any bugs that might pop
 - [X] Add Google Analytics and Consent Dialog
-- [ ] Define Monetization strategy with AdSense
+- [X] Define Monetization strategy with AdSense
 - [ ] Add Sitemap to Webmaster Tools and add Robots
+- [X] Add security headers (https://nextjs.org/docs/advanced-features/security-headers)
 - [ ] Release 1.0.1
 ----
 ### After launch
+- [ ] Add expand post image functionality
 - [ ] Create Post [Part 3] NextJS + Golang Service in Kubernetes - Golang
 - [ ] Create Post [Part 4] NextJS + Golang Service in Kubernetes - NextJS
 - [ ] Create Post [Part 5] NextJS + Golang Service in Kubernetes - Networking and Instrumentation
