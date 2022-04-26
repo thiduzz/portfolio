@@ -27,6 +27,12 @@ const MarkdownContent = ({children}: MarkdownContentProps) => {
                             {children}
                         </code>
                     )
+                },
+                img({node, src, title, alt }){
+                    if(src){
+                        return <img src={src} title={title} alt={alt} />
+                    }
+                    return <div></div>
                 }
             }}
         >{children}</ReactMarkdown>
