@@ -19,7 +19,7 @@ This is my personal portfolio - build with Next.js project that will be hosted i
 - [ ] Fix any bugs that might pop
 - [X] Add Google Analytics and Consent Dialog
 - [X] Define Monetization strategy with AdSense
-- [ ] Add Sitemap to Webmaster Tools and add Robots
+- [X] Add Sitemap to Webmaster Tools and add Robots
 - [X] Add security headers (https://nextjs.org/docs/advanced-features/security-headers)
 - [ ] Release 1.0.1
 ----
