@@ -3,6 +3,7 @@ import {TopBarProps} from './TopBarMenu.types'
 import Link from "next/link";
 import {FiGithub, FiLinkedin, FiMail, FiMenu, FiRss, FiTwitter, FiX} from "react-icons/fi";
 import {useRouter} from "next/router";
+import { CSSTransition } from 'react-transition-group';
 
 
 const TopBarMenu = ({menu: menuProp}: TopBarProps) => {
@@ -70,13 +71,20 @@ const TopBarMenu = ({menu: menuProp}: TopBarProps) => {
             </nav>
         </div>
         <div className="block lg:hidden">
-            <div className="flex flex-row justify-end">
-                {!isOpen && <button onClick={handleOpen}><FiMenu className="text-gray-900 text-2xl"/></button>}
-            </div>
-            {isOpen && <menu className="h-screen w-screen bg-black/50 absolute inset-0 flex flex-col items-end z-20">
+            {!isOpen && <button onClick={handleOpen}><FiMenu className="text-gray-900 text-2xl"/></button>}
+            <CSSTransition in={isOpen} timeout={300} classNames="menu-backdrop"
+                           unmountOnExit>
+                <div className="h-screen w-screen bg-black/50 absolute inset-0 flex flex-col z-20"></div>
+            </CSSTransition>
+
+            <CSSTransition in={isOpen} timeout={300} classNames="menu-container"
+                           unmountOnExit>
+            <menu
+                className="h-screen w-screen absolute inset-0 flex flex-col items-end z-30">
                 <div className="bg-white h-screen w-2/3">
                     <div className="p-5 flex flex-row items-center justify-center border-gray-200 border-b-2">
-                        <button onClick={handleClose} className="flex flex-row items-center justify-center relative">
+                        <button onClick={handleClose}
+                                className="flex flex-row items-center justify-center relative">
                             <FiX className="text-gray-500 text-4xl absolute -left-12"/>Close
                         </button>
                     </div>
@@ -87,11 +95,13 @@ const TopBarMenu = ({menu: menuProp}: TopBarProps) => {
                     </div>
                     <div className='flex flex-row gap-x-16 items-center justify-center'>
                         <ul>
-                            {menu?.map((item, index) => <li key={index} className="w-full p-5 text-2xl">{item}</li>)}
+                            {menu?.map((item, index) => <li key={index}
+                                                            className="w-full p-5 text-2xl">{item}</li>)}
                         </ul>
                     </div>
                 </div>
-            </menu>}
+            </menu>
+            </CSSTransition>
         </div>
     </>
 }

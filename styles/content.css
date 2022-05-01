@@ -8,9 +8,9 @@ a{
 }
 
 @media screen(md) {
-.page-content{
-    @apply container mx-auto;
-}
+    .page-content{
+        @apply container mx-auto;
+    }
 }
 
 .richtext-content, .markdown-content, .general-content {
