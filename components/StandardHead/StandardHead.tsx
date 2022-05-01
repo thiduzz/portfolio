@@ -9,6 +9,7 @@ const StandardHead = ({children, title, image, updatedAt, description}: Standard
     const currentUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${router.asPath}`
     const currentImage = image ?? '/images/og-image.png'
     return (<Head>
+        <meta charSet="UTF-8"/>
         <meta property="og:locale" content="en"/>
         <meta name="language" content="en"/>
         <meta name="application-name" content="Thiago Mello"/>
